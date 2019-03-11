@@ -1,4 +1,5 @@
-language = python
+language: python
 python:
- - "stable"
+ - "3.7"
+ - "3.6"
 script: python -m unittest
