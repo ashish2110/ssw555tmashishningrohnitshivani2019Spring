@@ -13,13 +13,11 @@ def us02_birth_before_marriage(ind, family):
                 fam_list = ind[key]["FAMS"]
                 # print("fam_list",fam_list)
                 for family_id_list in fam_list:
-
                     for family_id in family_id_list :
-                        
                         for key1, values1 in family.items():
-                            if (key1 == family_id and values1.__contains__("MARR_DATE") and family[key1]["MARR_DATE"] != "NA"):
-                                # print("In User Story 02=====")
+                            if (key1 == family_id and values1.__contains__("MARR_DATE") and family[key1]["MARR_DATE"] != "NA"):    
                                 isvalid = us02_birth_is_before_marriage(ind[key]["BIRT_DATE"][0],family[key1]["MARR_DATE"][0])
+                                
                                 if (isvalid == False):
                                     print('Error US02 in line',ind[key]["BIRT_DATE"][1],': Birth date of', ind[key]["NAME"][0], '(', key ,') occurs after the marriage date.')
                                     return isvalid
