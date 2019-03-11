@@ -1,5 +1,4 @@
 class us_rs:
-    
     def printError(lineNumber, UserstoryName, message):
         print("ERROR " + UserstoryName + " in line " + str(lineNumber) + ". " + message )
 
