@@ -22,6 +22,7 @@ def us02_birth_before_marriage(ind, family):
                                 isvalid = us02_birth_is_before_marriage(ind[key]["BIRT_DATE"][0],family[key1]["MARR_DATE"][0])
                                 if (isvalid == False):
                                     print('Error US02 in line',ind[key]["BIRT_DATE"][1],': Birth date of', ind[key]["NAME"][0], '(', key ,') occurs after the marriage date.')
+                                    return isvalid
                                 break
 
     
