@@ -1,6 +1,6 @@
 import unittest
 import datetime
-from us35_sp import us35_ppl_born_last_30days_check
+from userstories_sp import *
 
 class TestProject(unittest.TestCase):
     """
@@ -10,20 +10,21 @@ class TestProject(unittest.TestCase):
         # Assure that the dates are in properformat
         # template : us35_ppl_born_last_30days_check(birth_date,present_date)
        
-        present_date = datetime.datetime.now()
         # if the birth date is NA/ present date is NA / both are NA it must be false
-        self.assertFalse(us35_ppl_born_last_30days_check("NA",present_date))
-        self.assertFalse(us35_ppl_born_last_30days_check("2019-02-22","NA"))
-        self.assertFalse(us35_ppl_born_last_30days_check("NA","NA"))
+        self.assertFalse(us35_ppl_born_last_30days_check("NA"))
+        self.assertFalse(us35_ppl_born_last_30days_check("2019-02-22"))
+
 
         # If birth date is after present date
-        self.assertFalse(us35_ppl_born_last_30days_check("2020-02-22",present_date))
+        self.assertFalse(us35_ppl_born_last_30days_check("2020-02-22"))
 
          # if birth date is before more than 30 days in the past from current date
-        self.assertFalse(us35_ppl_born_last_30days_check("2018-04-13",present_date))
+        self.assertFalse(us35_ppl_born_last_30days_check("2018-04-13"))
 
         # If the birth date is within 30 days from current date, it should be true
-        self.assertTrue(us35_ppl_born_last_30days_check("2019-02-22",present_date))
+        self.assertTrue(us35_ppl_born_last_30days_check("2019-02-22"))
+
+       
 
        
         
