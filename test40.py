@@ -1,20 +1,20 @@
 import unittest
 from us_rs import us_rs 
 from main import Gedcom
-from us04_an import parse_data_04
+
 
 class TestCase(unittest.TestCase):
     
     
-    gedcom = Gedcom("GEDCOM_input.ged")
+    gedcom = Gedcom("My-Family-27-Jan-2019-275.ged")
     fam = gedcom.storeFam()
     ind = gedcom.storeInd()
 
     
     
     def test_checkLineNumber(self):
-        self.assertEqual(parse_data_04(self.fam), 0)
-        self.assertFalse(us_rs.siblingCount(self.fam))
+        
+        self.assertTrue(us_rs.divorceBeforeDeath(self.ind, self.fam))
 
 if __name__ == "__main__":
     unittest.main()

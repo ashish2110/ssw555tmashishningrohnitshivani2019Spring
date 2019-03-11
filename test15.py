@@ -27,14 +27,14 @@ class TestSiblingCount(unittest.TestCase):
         family_wrong = {'@F1@': {'CHIL': [["@I1@", 10], "@I2@","@I3@","@I4@","@I5@","@I6@","@I7@","@I8@","@I9@","@I10@","@I11@","@I12@","@I13@","@I14@","@I15@","@I16@" ]}}
         
         #Passing random string instead of a dictionary
-        family_wrong_1 = "hello"
+        
 
         self.assertTrue(us_rs.siblingCount(family_right_1))
         self.assertTrue(us_rs.siblingCount(family_right_2))
         self.assertTrue(us_rs.siblingCount(family_right_3))
         self.assertTrue(us_rs.siblingCount(family_right_4))
         self.assertFalse(us_rs.siblingCount(family_wrong))
-        self.assertFalse(us_rs.siblingCount(family_wrong_1) )
+        
         
         
 
