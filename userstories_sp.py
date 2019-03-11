@@ -29,16 +29,23 @@ class userstories_sp():
                                     isvalid = userstories_sp.us02_birth_is_before_marriage(ind[key]["BIRT_DATE"][0],family[key1]["MARR_DATE"][0])
                                     if (isvalid == False):
                                         print('Error US02 in line',ind[key]["BIRT_DATE"][1],': Birth date of', ind[key]["NAME"][0], '(', key ,') occurs after the marriage date.')
+                                    return False
                                     break
+                                else: 
+                                    return False
+            else: 
+                return False
 
         
-    #Refactored to remove uncessary logic as it was already handled 
+
     #changes in code to shorten length
     def us02_birth_is_before_marriage(birth_date,marriage_date):
-        birth_date = userstories_sp.date_conversion(birth_date)
-        marriage_date = userstories_sp.date_conversion(marriage_date)
-    
-        return birth_date < marriage_date
+        if(birth_date == "NA" or marriage_date == "NA"):
+            return True
+        else:
+            birth_date = userstories_sp.date_conversion(birth_date)
+            marriage_date = userstories_sp.date_conversion(marriage_date)
+            return birth_date < marriage_date
             
 
     # User Story #35
@@ -58,8 +65,11 @@ class userstories_sp():
        
         
 
-    #Refactored to remove uncessary logic as it was already handled
+ 
     #changes in code to shorten length
     def us35_ppl_born_last_30days_check(birth_date):
-        return birth_date >= str(datetime.date.today()-datetime.timedelta(days=30)) and birth_date < str(datetime.date.today())
+        if(birth_date == "NA"):
+            return False
+        else:
+            return birth_date >= str(datetime.date.today()-datetime.timedelta(days=30)) and birth_date < str(datetime.date.today())
             
