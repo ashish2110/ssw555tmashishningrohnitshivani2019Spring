@@ -4,8 +4,7 @@ from prettytable import PrettyTable
 from us01_ny import us01_date_b4_now
 from us_rs import us_rs
 from us42_ny import us42_legit_date, us42_tsk01_is_legit_date
-from us02_sp import us02_birth_before_marriage
-from us35_sp import us35_ppl_born_last_30days
+from userstories_sp import *
 from userstories_an import *
 from us10_ny import us10_marriage_after_14
 from us34_ny import us34_list_big_age_diff
@@ -369,7 +368,7 @@ class Gedcom():
     def print_all(self):
         self.print_gedcom()
         #User Story 35
-        us35_ppl_born_last_30days(self.ind)
+        userstories_sp.us35_ppl_born_last_30days(self.ind)
         #User Story 33
         userstory_an.parse_data_33(self.ind,self.family)
         # User Story 34
@@ -390,7 +389,7 @@ class Gedcom():
         # User Story 15        
         test_val_15 = us_rs.siblingCount(self.family)              
         # User Story 02
-        us02_birth_before_marriage(self.ind, self.family)
+        userstories_sp.us02_birth_before_marriage(self.ind, self.family)
         # User Story 10
         us10_marriage_after_14(self.ind, self.family)
 
