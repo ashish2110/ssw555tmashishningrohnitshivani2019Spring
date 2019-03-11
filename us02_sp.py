@@ -25,7 +25,6 @@ def us02_birth_before_marriage(ind, family):
                                 break
 
     
-
 def us02_birth_is_before_marriage(birth_date,marriage_date):
     if(birth_date == "NA" or marriage_date == "NA"):
         return True
