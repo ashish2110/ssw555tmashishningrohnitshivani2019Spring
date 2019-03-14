@@ -20,12 +20,20 @@ class Gedcom():
         a=ged.read()
         b=a.split("\n")
         #print(b)
+        self.tagCheck = []
         self.ind={}
-
         self.family={}
         self.family_obj = {}
         matrix = self._preprocess_file(b)
         self._matrix_to_dict(matrix) 
+
+    def _debug_print(self):
+        for i in range(0,len(self.tagCheck)):
+            print(self.tagCheck[i])
+        for x, y in self.ind.items():
+            print(x, y)
+        for x, y in self.family.items():
+            print(x, y)
 
     def _preprocess_file(self, b):
         c=[]      
@@ -57,65 +65,65 @@ class Gedcom():
             if(c[i][0]=="" and c[i][1]=="" and c[i][2]==""):
                 temporary="temporary"#used as a place holder
             else:
-                print("-->"+b[i])
+                self.tagCheck.append("-->"+b[i])
                 if c[i][0]=='0':
                     if (c[i][1] in check[c[i][0]]) and (c[i][1]=="HEAD" or c[i][1]=="TRLR" or c[i][1]=="NOTE"):
                         if (c[i][1]=="HEAD" or c[i][1]=="TRLR") and (c[i][2]==""):
                             #print("valid\n")
-                            print("<--"+c[i][0]+"|"+c[i][1]+"|Y"+c[i][2]+"\n")
+                            self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|Y"+c[i][2]+"\n")
                             finalize.append(c[i])
                         elif c[i][1]=="NOTE" and c[i][2]!="":
                             #print("valid\n")
-                            print("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
+                            self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
                             finalize.append(c[i])
                         else:
                             #print("invalid")
                             if c[i][2]=="":
-                                print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")                              
+                                self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")                              
                             else:
-                                print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
+                                self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
                     elif (c[i][2] in check[c[i][0]]) and (c[i][2]=="INDI" or c[i][2]=="FAM"):
                         #print("valid\n")
-                        print("<--"+c[i][0]+"|"+c[i][2]+"|Y|"+c[i][1]+"\n")
+                        self.tagCheck.append("<--"+c[i][0]+"|"+c[i][2]+"|Y|"+c[i][1]+"\n")
                         temp=[c[i][0],c[i][2],c[i][1],i+1]
                         finalize.append(temp)
                     else:
                         #print("invalid\n")
                         if c[i][2]=="":
-                            print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
+                            self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
                         else:
-                            print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
+                            self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
                 elif (c[i][0]=='1') and (c[i][1] in check[c[i][0]]):
                     if (c[i][1]=="BIRT" or c[i][1]=="DEAT" or c[i][1]=="MARR" or c[i][1]=="DIV" ) and (c[i][2]==""):
                         #print("valid\n")
-                        print("<--"+c[i][0]+"|"+c[i][1]+"|Y"+c[i][2]+"\n")
+                        self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|Y"+c[i][2]+"\n")
                         finalize.append(c[i])
                     elif (c[i][1]!="BIRT" or c[i][1]!="DEAT" or c[i][1]!="MARR" or c[i][1]!="DIV" ):
                         if (c[i][1]=="SEX"):
                             if (c[i][2]=='M' or c[i][2]=='F'):
                                 #print("valid\n")
-                                print("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
+                                self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
                                 finalize.append(c[i])
                             else:
                                 #print("invalid\n")
                                 if c[i][2]=="":
-                                    print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
+                                    self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
                                 else:
-                                    print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
+                                    self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
                         else:
                             #print("valid\n")
-                            print("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
+                            self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
                             finalize.append(c[i])
                 elif (c[i][0]=='2') and (c[i][1] in check[c[i][0]]):
                     #print("valid\n")
-                    print("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
+                    self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
                     finalize.append(c[i])
                 else:
                     #print("invalid\n")
                     if c[i][2]=="":
-                        print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
+                        self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
                     else:
-                        print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
+                        self.tagCheck.append("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
 
         #print(finalize)
         return finalize
@@ -235,12 +243,11 @@ class Gedcom():
                 i=j
             else:
                 i=i+1
-        print(self.ind)
-        print(self.family)
     
         self.family_obj = self.family
+        # !Should disable _debug_print at the end of each sprint
+        self._debug_print()
         
-
     def print_gedcom(self):
         indi = PrettyTable()
         indi.field_names = ["ID", "Name", "Gender", "Birthday", "Age", "Alive", "Death", "Child", "Spouse"]
