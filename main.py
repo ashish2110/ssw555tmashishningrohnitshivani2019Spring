@@ -8,15 +8,10 @@ from userstories_sp import *
 from userstories_an import *
 from us10_ny import us10_marriage_after_14
 from us34_ny import us34_list_big_age_diff
-#import us04_an
-#import us07_an
-# import US04
-# import US07
 # !To developers: please call all your user story methods in either print_all() or 
 # validate_all() as the name implies
 FILENAME="My-Family-27-Jan-2019-275.ged"
 #FILENAME = "GEDCOM_input.ged"
-error = []
 
 class Gedcom():
     
@@ -33,9 +28,7 @@ class Gedcom():
         self._matrix_to_dict(matrix) 
 
     def _preprocess_file(self, b):
-        c=[]
-        lineNumber = 0
-        
+        c=[]      
         finalize=[]
         check={'0':["HEAD","NOTE","TRLR","INDI","FAM"],
         '1':["NAME","SEX","BIRT","DEAT","FAMC","FAMS","MARR","HUSB","WIFE","CHIL","DIV",],
@@ -60,9 +53,7 @@ class Gedcom():
                         c.append([b[i][0],b[i][2:2+space],b[i][space+3:],i+1])
 
         # print(c)
-
         for i in range(0,len(c)):
-            lineNumber += 1
             if(c[i][0]=="" and c[i][1]=="" and c[i][2]==""):
                 temporary="temporary"#used as a place holder
             else:
@@ -80,12 +71,9 @@ class Gedcom():
                         else:
                             #print("invalid")
                             if c[i][2]=="":
-                                print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
-                                error.append(lineNumber)
-                                
+                                print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")                              
                             else:
                                 print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
-                                error.append(lineNumber)
                     elif (c[i][2] in check[c[i][0]]) and (c[i][2]=="INDI" or c[i][2]=="FAM"):
                         #print("valid\n")
                         print("<--"+c[i][0]+"|"+c[i][2]+"|Y|"+c[i][1]+"\n")
@@ -95,10 +83,8 @@ class Gedcom():
                         #print("invalid\n")
                         if c[i][2]=="":
                             print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
-                            error.append(lineNumber)
                         else:
                             print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
-                            error.append(lineNumber)
                 elif (c[i][0]=='1') and (c[i][1] in check[c[i][0]]):
                     if (c[i][1]=="BIRT" or c[i][1]=="DEAT" or c[i][1]=="MARR" or c[i][1]=="DIV" ) and (c[i][2]==""):
                         #print("valid\n")
@@ -114,10 +100,8 @@ class Gedcom():
                                 #print("invalid\n")
                                 if c[i][2]=="":
                                     print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
-                                    error.append(lineNumber)
                                 else:
                                     print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
-                                    error.append(lineNumber)
                         else:
                             #print("valid\n")
                             print("<--"+c[i][0]+"|"+c[i][1]+"|Y|"+c[i][2]+"\n")
@@ -130,10 +114,8 @@ class Gedcom():
                     #print("invalid\n")
                     if c[i][2]=="":
                         print("<--"+c[i][0]+"|"+c[i][1]+"|N"+c[i][2]+"\n")
-                        error.append(lineNumber)
                     else:
                         print("<--"+c[i][0]+"|"+c[i][1]+"|N|"+c[i][2]+"\n")
-                        error.append(lineNumber)
 
         #print(finalize)
         return finalize
