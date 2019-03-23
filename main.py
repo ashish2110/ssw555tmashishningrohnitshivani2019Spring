@@ -382,14 +382,18 @@ class Gedcom():
         # User Story 10
         us10_marriage_after_14(self.ind, self.family)
         # No "sepration line" is allowed explicitly in sprint checklist
-        #print("###################################")
+        # User Story 6
         us_rs.divorceBeforeDeath(self.ind, self.family)
+        # User Story 5
+        us_rs.marriageBeforeDeath(self.ind, self.family)
         
 
 def main():
     gedcom = Gedcom(FILENAME)
     gedcom.print_all()
     gedcom.validate_all()
+    
+    
     
 
 if __name__ == '__main__':
