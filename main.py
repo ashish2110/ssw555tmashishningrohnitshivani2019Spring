@@ -381,8 +381,8 @@ class Gedcom():
         userstories_sp.us02_birth_before_marriage(self.ind, self.family)
         # User Story 10
         us10_marriage_after_14(self.ind, self.family)
-
-        print("###################################")
+        # No "sepration line" is allowed explicitly in sprint checklist
+        #print("###################################")
         us_rs.divorceBeforeDeath(self.ind, self.family)
         
 
