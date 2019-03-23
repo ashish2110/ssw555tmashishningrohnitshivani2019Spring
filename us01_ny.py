@@ -26,14 +26,19 @@ def us01_date_b4_now(ind, family):
                 print('Error US01 in line', family[key]["DIV_DATE"][1],': Divorce date of ', ind[husID]["NAME"][0],'(', husID, ') and', ind[wifeID]["NAME"][0],'(', wifeID,') in Family (', key,') occurs after current date.')
 
 def us01_tsk01_is_b4_now(dateString):
-    try:
+    isParsable = us01_tsk02_is_parsable(dateString)
+
+    if(isParsable):
         nowDate = datetime.datetime.now()
         subjectDate = datetime.datetime.strptime(dateString, '%Y-%m-%d')
-        if(subjectDate < nowDate):
-            return True
-        else:
-            return False
-    except ValueError:
+        return (subjectDate < nowDate)
+    else:
         #if input date is NA or invalid, it is considered as true
         return True
 
+def us01_tsk02_is_parsable(dateString):
+    try:
+        dateInput = datetime.datetime.strptime(dateString, '%Y-%m-%d')
+        return True
+    except ValueError:
+        return False
