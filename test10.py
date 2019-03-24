@@ -1,5 +1,5 @@
 import unittest
-from us10_ny import us10_tsk01_is_child_marriage
+from us_ny import us10_tsk01_is_child_marriage
 
 class TestProject(unittest.TestCase):
     def test_us10_tsk01_is_child_marriage(self):

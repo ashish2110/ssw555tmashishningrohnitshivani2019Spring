@@ -1,13 +1,10 @@
 import os,sys
 import datetime
 from prettytable import PrettyTable
-from us01_ny import us01_date_b4_now
+from us_ny import *
 from us_rs import us_rs
-from us42_ny import us42_legit_date, us42_tsk01_is_legit_date
 from userstories_sp import *
 from userstories_an import *
-from us10_ny import us10_marriage_after_14
-from us34_ny import us34_list_big_age_diff
 # !To developers: please call all your user story methods in either print_all() or 
 # validate_all() as the name implies
 FILENAME="My-Family-27-Jan-2019-275.ged"

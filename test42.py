@@ -1,5 +1,5 @@
 import unittest
-from us42_ny import us42_tsk01_is_legit_date
+from us_ny import us42_tsk01_is_legit_date
 
 class TestProject(unittest.TestCase):
     def test_us42_tsk01_is_legit_date(self):

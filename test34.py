@@ -1,5 +1,5 @@
 import unittest
-from us34_ny import us34_tsk01_is_big_age_gap
+from us_ny import us34_tsk01_is_big_age_gap
 
 class TestProject(unittest.TestCase):
     def test_us34_tsk01_is_big_age_gap(self):
