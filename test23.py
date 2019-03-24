@@ -15,7 +15,7 @@ class testcase(unittest.TestCase):
     }
 
    
-    def testUS06(self):
+    def testUS23(self):
         self.assertFalse(us_rs.uniqueNameAndBirthdayCheck(self.incorrect))
         self.assertTrue(us_rs.uniqueNameAndBirthdayCheck(self.correct))
 
