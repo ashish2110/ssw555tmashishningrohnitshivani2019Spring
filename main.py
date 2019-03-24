@@ -5,6 +5,8 @@ from us_ny import *
 from us_rs import us_rs
 from userstories_sp import *
 from userstories_an import *
+from us12_sp import us12_parent_child_agediff_limit
+from us36_sp import us36_ppl_died_last_30days
 # !To developers: please call all your user story methods in either print_all() or 
 # validate_all() as the name implies
 FILENAME="My-Family-27-Jan-2019-275.ged"
@@ -359,6 +361,8 @@ class Gedcom():
         userstory_an.parse_data_33(self.ind,self.family)
         # User Story 34
         us34_list_big_age_diff(self.ind,self.family)
+        # User Story 36
+        us36_ppl_died_last_30days(self.ind,self.family)
 
     # Call your user story method here if it is related to search and validate
     def validate_all(self):
@@ -382,6 +386,8 @@ class Gedcom():
         #print("###################################")
         us_rs.divorceBeforeDeath(self.ind, self.family)
         us_rs.uniqueNameAndBirthdayCheck(self.ind)
+        # User story 12
+        us12_parent_child_agediff_limit(self.ind, self.family)
         
 
 def main():
