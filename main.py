@@ -384,6 +384,7 @@ class Gedcom():
         # No "sepration line" is allowed explicitly in sprint checklist
         #print("###################################")
         us_rs.divorceBeforeDeath(self.ind, self.family)
+        us_rs.uniqueNameAndBirthdayCheck(self.ind)
         
 
 def main():

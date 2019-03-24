@@ -42,6 +42,33 @@ class us_rs:
             for err in error:
                 us_rs.printError(err, "US 06", "Check the provided death date at the line. It occurs before the divorce.")
         return flag
+
+    # user story 23: Unique Name and birthday
+    def uniqueNameAndBirthdayCheck(individual):
+        flag = True
+        datadict = []
+        for indid, indvalue in individual.items():
+            element = []
+            element.append(indvalue['NAME'])
+            element.append(indvalue['BIRT_DATE'])
+            datadict.append(element)
+
+        i = 0
+        while i < len(datadict):
+            j = i + 1
+            while j < len(datadict):
+                if datadict[i][0][0] == datadict[j][0][0]:
+                    if datadict[i][1][0] == datadict[j][1][0]:
+
+                        us_rs.printError(datadict[i][0][1], 'US 23', "The name and birthdate is not unique.")
+                        flag = False
+                j += 1
+            i += 1
+
+        return flag
+
+
+
                 
 
   
