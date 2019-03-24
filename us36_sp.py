@@ -8,7 +8,7 @@ def us36_ppl_died_last_30days(ind, family):
            status = us36_ppl_died_last_30days_check(ind[key]["DEAT_DATE"][0],present_date)
            if status == True:
                new_record = key+str(values)
-               print(new_record)
+            #   print(new_record)
             #    print(type(values))
                last_30days_died_list.append(new_record)
     for records in last_30days_died_list:
@@ -20,7 +20,7 @@ def us36_ppl_died_last_30days_check(death_date,present_date):
     #print(type(death_date))
     if not us01_tsk02_is_parsable(death_date):
         return False
-        
+
     if(death_date == "NA" or present_date =="NA"):
         return False
     else:
