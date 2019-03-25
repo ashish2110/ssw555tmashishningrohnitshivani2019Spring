@@ -31,10 +31,11 @@ Family
 US35: List of individuals born in the last 30days:
 @I1@{'NAME': ['Sherley /Johnson/', 17], 'SEX': ['M', 21], 'BIRT_DATE': ['2019-02-25', 23], 'DEAT_DATE': ['Invalid', 25], 'FAMC': [['@F1@', 26]], 'ALIVE': 'False', 'AGE': 'Invalid', 'FAMS': 'NA'}
 
-List of id's of orpan children is: ['@I9@', '@I10@']
-Anomaly US34 in line 157 : Marriage of  Smith /Johnson/ ( @I2@ ) and Christine /Clie/ ( @I3@ ) in Family ( @F1@ ) occurs when older spouse is more than twice as old as younger one.
-List of individuals died in the last 30days:
+US36: List of individuals died in the last 30days:
 @I8@{'NAME': ['Benjamin /Bing/', 91], 'SEX': ['M', 95], 'BIRT_DATE': ['1949-10-12', 97], 'DEAT_DATE': ['2019-03-15', 99], 'FAMS': [['@F4@', 100]], 'ALIVE': 'False', 'AGE': 69, 'FAMC': 'None'}
+
+US33: List of id's of orpan children is: ['@I9@', '@I10@']
+Anomaly US34 in line 157 : Marriage of  Smith /Johnson/ ( @I2@ ) and Christine /Clie/ ( @I3@ ) in Family ( @F1@ ) occurs when older spouse is more than twice as old as younger one.
 Error US01 in line 36 : Death date of Smith /Johnson/ ( @I2@ ) occurs after current date.
 Error US01 in line 136 : Birth date of Jerry /Bing/ ( @I12@ ) occurs after current date.
 Error US01 in line 215 : Marriage date of  Edward /Bing/ ( @I10@ ) and Mine /Ruthers/ ( @I11@ ) in Family ( @F5@ ) occurs after current date.
