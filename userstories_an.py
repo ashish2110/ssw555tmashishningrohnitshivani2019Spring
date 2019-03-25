@@ -95,4 +95,4 @@ class userstory_an():
                         output=userstory_an.us_33(input_list)
                         if output!=0:
                             orphan_children.append(output)
-        print("List of id's of orpan children is: "+ str(orphan_children))
+        print("US33: List of id's of orpan children is: "+ str(orphan_children))
