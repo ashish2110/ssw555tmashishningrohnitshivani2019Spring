@@ -12,8 +12,6 @@ class TestProject(unittest.TestCase):
        
         # if the birth date is NA it must be false
         self.assertFalse(userstories_sp.us35_ppl_born_last_30days_check("NA"))
-        self.assertFalse(userstories_sp.us35_ppl_born_last_30days_check("2018-02-22"))
-
 
         # If birth date is after present date
         self.assertFalse(userstories_sp.us35_ppl_born_last_30days_check("2020-02-22"))
