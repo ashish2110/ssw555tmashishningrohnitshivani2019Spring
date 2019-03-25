@@ -103,6 +103,7 @@ def dates_within(dt1, dt2, limit, units):
     return (abs((dt1 - dt2).days) / conversion[units]) <= limit
 
 def us34_list_big_age_diff(ind, family):
+    print('\nUS34: List of couples whose marriage occurs when older spouse is more than twice as old as younger one.')
     for key, values in family.items():
         if (values.__contains__("MARR_DATE") and family[key]["MARR_DATE"] != "NA"):
             husID = family[key]["HUSB"][0]
@@ -110,8 +111,7 @@ def us34_list_big_age_diff(ind, family):
             # argument sequence: date of marriage, husband date of birth, wife date of birth
             isBigGap = us34_tsk01_is_big_age_gap(family[key]["MARR_DATE"][0], ind[husID]["BIRT_DATE"][0], ind[wifeID]["BIRT_DATE"][0])
             if(isBigGap):
-                msgSuffix = 'occurs when older spouse is more than twice as old as younger one.'
-                print('Anomaly US34 in line', family[key]["MARR_DATE"][1],': Marriage of ', ind[husID]["NAME"][0],'(', husID, ') and', ind[wifeID]["NAME"][0],'(', wifeID,') in Family (', key,')', msgSuffix)
+                print('Family', key, 'of husband', ind[husID]["NAME"][0],'(', husID, ') and wife', ind[wifeID]["NAME"][0],'(', wifeID,')')
 
 def us34_tsk01_is_big_age_gap(domString, husDOBString, wifeDOBString):
     try:
