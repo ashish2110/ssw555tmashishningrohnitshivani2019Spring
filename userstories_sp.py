@@ -134,3 +134,19 @@ class userstories_sp():
                 return True 
             else:
                 return False
+
+
+    # User Story #08
+    """
+    Children should be born after marriage of parents (and not more than 9 months after their divorce)
+    """
+    def us08_child_born_after_parents_marriagedate(ind, family):
+        for key, values in family.items():
+            if (values.__contains__("MARR_DATE") and family[key]["MARR_DATE"] != "NA" and family[key]["CHIL"] != "NA" and values.__contains__("DIV_DATE")):
+                for child in family[key]["CHIL"]:
+                    for key1, values1 in ind.items():
+                        if (key1 == child[0]):
+                            if(values1.__contains__("BIRT_DATE") and ind[key1]["BIRT_DATE"][0] != "NA"):
+                                status = userstory_sp.us08_child_parents_marriagedate_check(family[key]["MARR_DATE"][0],ind[key1]["BIRT_DATE"][0],family[key]["DIV_DATE"])
+                                if (status == False):
+                                    print("ERROR US08 in line"+str(ind[key1]["BIRT_DATE"][1])+": Children should be born after marriage of parents (and not more than 9 months after their divorce")
