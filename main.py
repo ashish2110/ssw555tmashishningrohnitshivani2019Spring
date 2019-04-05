@@ -361,11 +361,15 @@ class Gedcom():
         userstory_an.parse_data_33(self.ind,self.family)
         # User Story 34
         us34_list_big_age_diff(self.ind,self.family)
+        #User story 38
+        userstory_an.parse_data_38(self.ind)
 
     # Call your user story method here if it is related to search and validate
     def validate_all(self):
         # User Story 01
         us01_date_b4_now(self.ind, self.family)
+        #User story 03
+        userstory_an.parse_data_03(self.ind)
         # User Story 4 and 7
         #print(self.ind)
         userstory_an.parse_data_04(self.family)

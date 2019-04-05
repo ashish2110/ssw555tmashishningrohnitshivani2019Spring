@@ -1,3 +1,4 @@
+import datetime
 class userstory_an():
 
     def us_04(mar_div_details):
@@ -40,6 +41,18 @@ class userstory_an():
                     return orphan_details[3]
                 else:
                     return 0
+            else:
+                return 0
+        else:
+            return 0
+    
+    def us_03(age):
+        if age[2]!='NA' and age[2]!='Invalid':
+            if int(age[2])<0:
+                if age[1]=='NA':
+                    return "Error US03 in line " + str(age[0][1]) +": Birth date is after death date for person with id"+ str(age[3])
+                else:
+                    return "Error US03 in line " + str(age[0][1]) + " or line " + str(age[1][1]) + ": Birth date is after death date for person with id"+ str(age[3])
             else:
                 return 0
         else:
@@ -96,3 +109,37 @@ class userstory_an():
                         if output!=0:
                             orphan_children.append(output)
         print("US33: List of id's of orpan children is: "+ str(orphan_children))
+
+    def parse_data_03(ind):
+        for individual_id in ind:
+            #print(ind[individual_id]['AGE'])
+            output=userstory_an.us_03([ind[individual_id]['BIRT_DATE'],ind[individual_id]['DEAT_DATE'],ind[individual_id]['AGE'],individual_id])
+            if output!=0:
+                print(output)
+
+    def us_38(dates):
+        if dates[2]!='Invalid' and dates[2]!='NA' and dates[2]>0:
+            if dates[1]=='NA':
+                date_today=dates[4]
+                date_30_days_later=dates[4]+datetime.timedelta(days=30)
+                x=dates[0][0]
+                x=datetime.datetime.strptime(x,'%Y-%m-%d')
+                if (date_today.day<=x.day and date_today.month==x.month) or (date_30_days_later.day>=x.day and date_30_days_later.month==x.month) or (date_today.month<x.month and date_30_days_later.month>x.month):
+                    return dates[3]
+                else:
+                    return 0
+            else:
+                return 0
+        else:
+            return 0
+
+
+
+    def parse_data_38(ind):
+        upcoming_birthdays=[]
+        for individual_id in ind:
+            output=userstory_an.us_38([ind[individual_id]['BIRT_DATE'],ind[individual_id]['DEAT_DATE'],ind[individual_id]['AGE'],individual_id,datetime.datetime.now()])
+            if output!=0:
+                upcoming_birthdays.append(output)
+        print("US38: List of id's of living people whose birthday occurs in next 30 days: "+str(upcoming_birthdays))
+    
