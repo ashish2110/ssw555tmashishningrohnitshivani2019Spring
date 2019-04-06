@@ -131,3 +131,13 @@ def us34_tsk01_is_big_age_gap(domString, husDOBString, wifeDOBString):
     except ValueError:
         #if any input date is NA or invalid, it is considered as false
         return False
+
+
+# Sprint 3 user stories
+# List all deceased individuals
+def us29_list_dead(ind):
+    print('\nUS29: List all deceased individuals:')
+    for key, values in ind.items():
+        if(values.__contains__("ALIVE")):
+            if(ind[key]["ALIVE"] == "False"):
+                print('US29: Individual', ind[key]["NAME"][0], '(', key ,') died at', ind[key]["DEAT_DATE"][0])
