@@ -141,3 +141,61 @@ def us29_list_dead(ind):
         if(values.__contains__("ALIVE")):
             if(ind[key]["ALIVE"] == "False"):
                 print('US29: Individual', ind[key]["NAME"][0], '(', key ,') died at', ind[key]["DEAT_DATE"][0])
+
+# Individuals and families should have corresponding entries
+def us26_match_entries(ind, family):
+    # check if individuals have matching entries in families
+    for key, values in ind.items():
+        # check if individuals have matching child entries
+        if(values.__contains__("FAMC") and ind[key]["FAMC"] != "None"):
+            #In case FAMC has more than one tuple
+            for index in range(len(ind[key]["FAMC"])):
+                familyID = ind[key]["FAMC"][index][0]
+                # entries not found
+                if(familyID not in family.keys()):
+                    print('Error US26 in line', ind[key]["FAMC"][index][1], ': Family', familyID, 'in Individual ID', key, 'does not have entry in families.')
+                elif not any(key in sublist for sublist in family[familyID]["CHIL"]):
+                # entries found but not matching
+                    print('Error US26 in line', ind[key]["FAMC"][index][1], ': Family', familyID, 'and Individual ID', key, 'entries are inconsistent.')
+        # check if individuals have matching spouse entries
+        if(values.__contains__("FAMS") and ind[key]["FAMS"] != "NA"):
+            #In case FAMS has more than one tuple
+            for index in range(len(ind[key]["FAMS"])):
+                spouseID = ind[key]["FAMS"][index][0]
+                # entries not found
+                if(spouseID not in family.keys()):
+                    print('Error US26 in line', ind[key]["FAMS"][index][1], ': Family', spouseID, 'in Individual ID', key, 'does not have entry in families.')
+                elif(key not in family[spouseID]["HUSB"]) and (key not in family[spouseID]["WIFE"]):
+                # entries found but not matching
+                    print('Error US26 in line', ind[key]["FAMS"][index][1], ': Family', spouseID, 'and Individual ID', key, 'entries are inconsistent.')
+    
+    # check if family have matching entries in individuals
+    for key, values in family.items():
+        # check if husbands have matching entries in individuals
+        if(values.__contains__("HUSB")):
+            husID = family[key]["HUSB"][0]
+            # entries not found
+            if(husID not in ind.keys()):
+                print('Error US26 in line', family[key]["HUSB"][1], ': husband ID', husID, 'in family', key, 'does not have entry in individuals.')
+            elif not any(key in sublist for sublist in ind[husID]["FAMS"]): 
+            # entries found but not matching
+                print('Error US26 in line', family[key]["HUSB"][1], ': husband ID', husID, 'in family', key, 'has wrong entry in individuals.')
+        # check if wives have matching entries in individuals
+        if(values.__contains__("HUSB")):
+            wifeID = family[key]["WIFE"][0]
+            # entries not found
+            if(wifeID not in ind.keys()):
+                print('Error US26 in line', family[key]["WIFE"][1], ': wife ID', wifeID, 'in family', key, 'does not have entry in individuals.')
+            elif not any(key in sublist for sublist in ind[wifeID]["FAMS"]): 
+            # entries found but not matching
+                print('Error US26 in line', family[key]["WIFE"][1], ': wife ID', wifeID, 'in family', key, 'has wrong entry in individuals.')
+        # check if children have matching entries in individuals
+        if(values.__contains__("CHIL") and len(family[key]["CHIL"]) > 0):
+            for i in range(0, len(family[key]["CHIL"])):
+                childID = family[key]["CHIL"][i][0]
+                # entries not found
+                if(childID not in ind.keys()):
+                    print('Error US26 in line', family[key]["CHIL"][i][1], ': child ID', childID, 'in family', key, 'does not have entry in individuals.')
+                elif not any(key in sublist for sublist in ind[childID]["FAMC"]):
+                # entries found but not matching
+                    print('Error US26 in line', family[key]["CHIL"][i][1], ': child ID', childID, 'in family', key, 'has wrong entry in individuals.')

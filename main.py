@@ -392,6 +392,8 @@ class Gedcom():
         us_rs.uniqueNameAndBirthdayCheck(self.ind)
         # User story 12
         userstories_sp.us12_parent_child_agediff_limit(self.ind, self.family)
+        # User Story 26
+        us26_match_entries(self.ind, self.family)
         
 
 def main():
