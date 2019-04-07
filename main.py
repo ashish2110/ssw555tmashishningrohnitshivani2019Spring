@@ -394,12 +394,16 @@ class Gedcom():
         userstories_sp.us12_parent_child_agediff_limit(self.ind, self.family)
         # User Story 26
         us26_match_entries(self.ind, self.family)
+        us_rs.uniqueChildNameCheck(self.ind, self.family)
+        
         
 
 def main():
     gedcom = Gedcom(FILENAME)
     gedcom.print_all()
     gedcom.validate_all()
+    # print(gedcom.family_obj)
+    # print(gedcom.ind)
     
 
 if __name__ == '__main__':
