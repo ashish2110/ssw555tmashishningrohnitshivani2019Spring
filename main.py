@@ -243,7 +243,7 @@ class Gedcom():
     
         self.family_obj = self.family
         # !Should disable _debug_print at the end of each sprint
-        self._debug_print()
+        #self._debug_print()
         
     def print_gedcom(self):
         indi = PrettyTable()
@@ -387,7 +387,7 @@ class Gedcom():
         # User Story 10
         us10_marriage_after_14(self.ind, self.family)
         # No "sepration line" is allowed explicitly in sprint checklist
-        print("###################################")
+        #print("###################################")
         us_rs.divorceBeforeDeath(self.ind, self.family)
         us_rs.uniqueNameAndBirthdayCheck(self.ind)
         # User story 12
