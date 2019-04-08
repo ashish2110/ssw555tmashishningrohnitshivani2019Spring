@@ -144,21 +144,22 @@ class userstories_sp():
     """
     def us08_child_born_after_parents_marriagedate(ind, family):
         for key, values in family.items():
-            if (values.__contains__("MARR_DATE") and family[key]["MARR_DATE"] != "NA" and family[key]["CHIL"] != "NA" and values.__contains__("DIV_DATE")):
+            if (values.__contains__("MARR_DATE") and values.__contains__("CHIL") and family[key]["MARR_DATE"] != "NA" and family[key]["CHIL"] != "NA" and values.__contains__("DIV_DATE")):
+                print(family[key]["CHIL"])
                 for child in family[key]["CHIL"]:
                     for key1, values1 in ind.items():
                         if (key1 == child[0]):
                             if(values1.__contains__("BIRT_DATE") and ind[key1]["BIRT_DATE"][0] != "NA"):
-                                status = userstory_sp.us08_child_parents_marriagedate_check(family[key]["MARR_DATE"][0],ind[key1]["BIRT_DATE"][0],family[key]["DIV_DATE"])
+                                status = userstories_sp.us08_child_parents_marriagedate_check(family[key]["MARR_DATE"][0],ind[key1]["BIRT_DATE"][0],family[key]["DIV_DATE"])
                                 if (status == False):
                                     print("ERROR US08 in line"+str(ind[key1]["BIRT_DATE"][1])+": Children should be born after marriage of parents (and not more than 9 months after their divorce")
 
-        def us08_child_parents_marriagedate_check(marriage_date,child_birth_date,divorce_date):
-            child_birth_date = userstory_sp.date_conversion(child_birth_date)
-            marriage_date = userstory_sp.date_conversion(marriage_date)
-            if (divorce_date == "NA"):
-                return child_birth_date > marriage_date
-            else:
-                divorce_date = userstory_sp.date_conversion(divorce_date[0])
-                diff = relativedelta.relativedelta(child_birth_date, divorce_date)
-                return child_birth_date > marriage_date and diff.months < 9 
+    def us08_child_parents_marriagedate_check(marriage_date,child_birth_date,divorce_date):
+        child_birth_date = userstories_sp.date_conversion(child_birth_date)
+        marriage_date = userstories_sp.date_conversion(marriage_date)
+        if (divorce_date == "NA"):
+            return child_birth_date > marriage_date
+        else:
+            divorce_date = userstories_sp.date_conversion(divorce_date[0])
+            diff = relativedelta.relativedelta(child_birth_date, divorce_date)
+            return child_birth_date > marriage_date and diff.months < 9 
