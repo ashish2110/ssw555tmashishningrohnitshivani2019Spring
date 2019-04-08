@@ -145,7 +145,6 @@ class userstories_sp():
     def us08_child_born_after_parents_marriagedate(ind, family):
         for key, values in family.items():
             if (values.__contains__("MARR_DATE") and values.__contains__("CHIL") and family[key]["MARR_DATE"] != "NA" and family[key]["CHIL"] != "NA" and values.__contains__("DIV_DATE")):
-                print(family[key]["CHIL"])
                 for child in family[key]["CHIL"]:
                     for key1, values1 in ind.items():
                         if (key1 == child[0]):
@@ -193,17 +192,12 @@ class userstories_sp():
     def us09_child_birth_parent_death_check(mother_death_date,father_death_date,child_birth_date):
         child_birth_date = userstories_sp.date_conversion(child_birth_date[0])
         if ((mother_death_date == "NA" or mother_death_date == "Invalid") and father_death_date != "NA"):
-            # print(" Debug 1")
             father_death_date = userstories_sp.date_conversion(father_death_date[0])
-            # diff = relativedelta.relativedelta(child_birth_date, father_death_date)
             return abs((child_birth_date-father_death_date).days/30.43) < 9 
         elif((father_death_date == "NA" or father_death_date == "Invalid" )and mother_death_date != "NA"):
-            # print(" Debug 2")
             mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
             return child_birth_date < mother_death_date
         elif(father_death_date != "NA" and mother_death_date !="NA" and father_death_date != "Invalid" and mother_death_date !="Invalid" ):
-            # print(" Debug 3")
             father_death_date = userstories_sp.date_conversion(father_death_date[0])
             mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
-            # diff = relativedelta.relativedelta(child_birth_date, father_death_date)
             return child_birth_date < mother_death_date and abs((child_birth_date-father_death_date).days/30.43) < 9 
