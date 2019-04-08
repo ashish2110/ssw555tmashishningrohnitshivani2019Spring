@@ -97,13 +97,14 @@ class us_rs:
         childrenNames = []
         flag = True
         childrenIds = []
-        for famid, famvalue in family.items():
+        for famvalue in family.items():
             if famvalue.__contains__("CHIL"):
                 childrenIds = famvalue["CHIL"]
             
             for childId in childrenIds:
-                childName = individual[childId[0]]["NAME"]
-                childrenNames.append(childName)
+                if(childId in individual.keys()):
+                    childName = individual[childId[0]]["NAME"]
+                    childrenNames.append(childName)
             i = 0
             
             if(len(childrenNames) > 1):
