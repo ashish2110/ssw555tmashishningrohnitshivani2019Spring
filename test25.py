@@ -21,7 +21,7 @@ class testcase(unittest.TestCase):
     }
 
    
-    def testUS23(self):
+    def testUS25(self):
         self.assertFalse(us_rs.uniqueChildNameCheck(self.incorrectInd, self.incorrectFam))
 
 

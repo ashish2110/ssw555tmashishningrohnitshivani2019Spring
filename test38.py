@@ -3,7 +3,7 @@ from userstories_an import *
 
 class testcase(unittest.TestCase):
 
-    def test_03(self):
+    def test_38(self):
         result=userstory_an.us_38([['2020-06-12',4],'NA',-2,'I1',datetime.datetime(2019, 4, 5, 12, 10, 10, 870999)])
         self.assertEqual(result,0)
 
