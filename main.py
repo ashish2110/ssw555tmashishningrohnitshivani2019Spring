@@ -243,7 +243,7 @@ class Gedcom():
     
         self.family_obj = self.family
         # !Should disable _debug_print at the end of each sprint
-        #self._debug_print()
+        self._debug_print()
         
     def print_gedcom(self):
         indi = PrettyTable()
@@ -402,8 +402,6 @@ def main():
     gedcom = Gedcom(FILENAME)
     gedcom.print_all()
     gedcom.validate_all()
-    # print(gedcom.family_obj)
-    # print(gedcom.ind)
     
 
 if __name__ == '__main__':
