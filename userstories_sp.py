@@ -192,12 +192,12 @@ class userstories_sp():
 
     def us09_child_birth_parent_death_check(mother_death_date,father_death_date,child_birth_date):
         child_birth_date = userstories_sp.date_conversion(child_birth_date[0])
-        if (mother_death_date == "NA" or mother_death_date == "Invalid"):
+        if ((mother_death_date == "NA" or mother_death_date == "Invalid") and father_death_date != "NA"):
             # print(" Debug 1")
             father_death_date = userstories_sp.date_conversion(father_death_date[0])
             # diff = relativedelta.relativedelta(child_birth_date, father_death_date)
             return abs((child_birth_date-father_death_date).days/30.43) < 9 
-        elif(father_death_date == "NA" or father_death_date == "Invalid"):
+        elif((father_death_date == "NA" or father_death_date == "Invalid" )and mother_death_date != "NA"):
             # print(" Debug 2")
             mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
             return child_birth_date < mother_death_date
