@@ -7,7 +7,7 @@ class TestProject(unittest.TestCase):
     """
     List all people in a GEDCOM file who were born in the last 30 days
     """
-    def test_us09_child_birth_parent_death_check(self):
+    def test_us08_child_born_after_parents_marriagedate(self):
         # Assure that the dates are in properformat
         # template : us08_child_parents_marriagedate_check(marriage_date,child_birth_date,divorce_date)
 
