@@ -394,7 +394,10 @@ class Gedcom():
         userstories_sp.us12_parent_child_agediff_limit(self.ind, self.family)
         # User Story 26
         us26_match_entries(self.ind, self.family)
+        # User story 25
         us_rs.uniqueChildNameCheck(self.ind, self.family)
+        # User story 05
+        us_rs.marriageBeforeDeath(self.ind, self.family)
         
         
 
