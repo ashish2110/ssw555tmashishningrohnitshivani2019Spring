@@ -400,6 +400,8 @@ class Gedcom():
         us_rs.uniqueChildNameCheck(self.ind, self.family)
         # User story 05
         us_rs.marriageBeforeDeath(self.ind, self.family)
+        # User Story 09
+        userstories_sp.us09_child_birth_parent_death(self.ind, self.family)
         
         
 

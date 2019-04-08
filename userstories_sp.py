@@ -163,3 +163,48 @@ class userstories_sp():
             divorce_date = userstories_sp.date_conversion(divorce_date[0])
             diff = relativedelta.relativedelta(child_birth_date, divorce_date)
             return child_birth_date > marriage_date and diff.months < 9 
+
+    
+    
+    # User Story #09
+    """
+    Child should be born before death of mother and before 9 months after death of father
+    """
+    def us09_child_birth_parent_death(ind, family):
+        for key, values in family.items():
+            if (values.__contains__("HUSB") and values.__contains__("CHIL") and values.__contains__("WIFE") and family[key]["CHIL"] != "NA" and family[key]["HUSB"] != "NA" and family[key]["WIFE"] != "NA"):
+                mother_id = family[key]["WIFE"][0]
+                father_id = family[key]["HUSB"][0]
+                for child in family[key]["CHIL"]: 
+                    for key1, values1 in ind.items():
+                        if(values1.__contains__("BIRT_DATE") and values1.__contains__("DEAT_DATE") ):
+                            if (key1 == mother_id):
+                                mother_death_date = ind[key1]["DEAT_DATE"]
+                            if (key1 == father_id):
+                                father_death_date = ind[key1]["DEAT_DATE"]
+                            if (key1 == child[0]):
+                                child_indi_line = ind[key1]["BIRT_DATE"][1]
+                                child_birth_date =  ind[key1]["BIRT_DATE"]
+
+                    status = userstories_sp.us09_child_birth_parent_death_check(mother_death_date,father_death_date,child_birth_date)
+                    if (status == False):
+                        print("ERROR US09 in line"+str(child_indi_line)+": Child should be born before death of mother and before 9 months after death of father")
+            
+
+    def us09_child_birth_parent_death_check(mother_death_date,father_death_date,child_birth_date):
+        child_birth_date = userstories_sp.date_conversion(child_birth_date[0])
+        if (mother_death_date == "NA" and mother_death_date == "Invalid"):
+            # print(" Debug 1")
+            father_death_date = userstories_sp.date_conversion(father_death_date[0])
+            diff = relativedelta.relativedelta(child_birth_date, father_death_date)
+            return diff.months < 9
+        elif(father_death_date == "NA" and father_death_date == "Invalid"):
+            # print(" Debug 2")
+            mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
+            return child_birth_date < mother_death_date
+        elif(father_death_date != "NA" and mother_death_date !="NA" and father_death_date != "Invalid" and mother_death_date !="Invalid" ):
+            # print(" Debug 3")
+            father_death_date = userstories_sp.date_conversion(father_death_date[0])
+            mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
+            diff = relativedelta.relativedelta(child_birth_date, father_death_date)
+            return child_birth_date < mother_death_date and diff.months < 9
