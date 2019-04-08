@@ -1,7 +1,7 @@
 
 #Refactored code to make a single class for all the userstories
 import datetime
-from dateutil import relativedelta
+# from dateutil import relativedelta
 
 class userstories_sp():
 
@@ -161,8 +161,7 @@ class userstories_sp():
             return child_birth_date > marriage_date
         else:
             divorce_date = userstories_sp.date_conversion(divorce_date[0])
-            diff = relativedelta.relativedelta(child_birth_date, divorce_date)
-            return child_birth_date > marriage_date and diff.months < 9 
+            return child_birth_date > marriage_date and abs((child_birth_date-divorce_date).days/30.43) < 9 
 
     
     
@@ -196,8 +195,8 @@ class userstories_sp():
         if (mother_death_date == "NA" and mother_death_date == "Invalid"):
             # print(" Debug 1")
             father_death_date = userstories_sp.date_conversion(father_death_date[0])
-            diff = relativedelta.relativedelta(child_birth_date, father_death_date)
-            return diff.months < 9
+            # diff = relativedelta.relativedelta(child_birth_date, father_death_date)
+            return abs((child_birth_date-father_death_date).days/30.43) < 9 
         elif(father_death_date == "NA" and father_death_date == "Invalid"):
             # print(" Debug 2")
             mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
@@ -206,5 +205,5 @@ class userstories_sp():
             # print(" Debug 3")
             father_death_date = userstories_sp.date_conversion(father_death_date[0])
             mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
-            diff = relativedelta.relativedelta(child_birth_date, father_death_date)
-            return child_birth_date < mother_death_date and diff.months < 9
+            # diff = relativedelta.relativedelta(child_birth_date, father_death_date)
+            return child_birth_date < mother_death_date and abs((child_birth_date-father_death_date).days/30.43) < 9 
