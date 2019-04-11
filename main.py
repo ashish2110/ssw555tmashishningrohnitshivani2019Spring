@@ -404,7 +404,8 @@ class Gedcom():
         us_rs.marriageBeforeDeath(self.ind, self.family)
         # User Story 09
         userstories_sp.us09_child_birth_parent_death(self.ind, self.family)
-        
+        # User Story 18
+        us18_sibling_marriage(self.family)
         
 
 def main():

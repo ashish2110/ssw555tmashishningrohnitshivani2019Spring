@@ -202,6 +202,7 @@ def us26_match_entries(ind, family):
 
 
 # Sprint 4 user stories
+# List all living married people
 def us30_list_living_married(ind, family):
     print('\nUS30: List all living married individuals:')
     for key, values in family.items():
@@ -213,3 +214,41 @@ def us30_list_living_married(ind, family):
                 print('US30: Husband', ind[husID]["NAME"][0], '(', husID ,') from family', key, 'is married and alive.')
             if(wifeID in ind.keys() and ind[wifeID]["ALIVE"] == "True"):
                 print('US30: Wife', ind[wifeID]["NAME"][0], '(', wifeID ,') from family', key, 'is married and alive.')
+
+# Siblings should not marry
+def us18_sibling_marriage(family):
+    for key, values in family.items():
+        if(values.__contains__("HUSB") and values.__contains__("WIFE")):
+            husID = family[key]["HUSB"][0]
+            wifeID = family[key]["WIFE"][0]
+            isSibling = us18_tsk01_is_sibling(husID, wifeID, family)
+            if(isSibling):
+                print('Anomaly US18 in line', family[key]["HUSB"][1], 'or', family[key]["WIFE"][1], ': husband ID', husID, 'and wife ID', wifeID, 'are siblings but married.')
+
+# return true if input individuals share at least one parent
+# otherwise return false
+def us18_tsk01_is_sibling(husID, wifeID, family):
+    husMom = us18_tsk02_get_parent(husID, "WIFE", family)
+    wifeMom = us18_tsk02_get_parent(wifeID, "WIFE", family)
+    husDad = us18_tsk02_get_parent(husID, "HUSB", family)
+    wifeDad = us18_tsk02_get_parent(wifeID, "HUSB", family)
+
+    if(husMom == wifeMom and husMom != 'NA'):
+        return True
+    elif(husDad == wifeDad and husDad != 'NA'):
+        return True
+    else:
+        return False
+
+# Find parent according to child ID and instruction
+# para tag: tell subroutine to search for father (HUSB) or mother (WIFE)
+# para tag: other inputs are invalid
+def us18_tsk02_get_parent(childID, tag, family):
+    if(tag == "HUSB" or tag == "WIFE"):
+        for k, v in family.items():
+            if(v.__contains__("CHIL") and len(family[k]["CHIL"]) > 0):
+                for i in range(0, len(family[k]["CHIL"])):
+                    if childID == family[k]["CHIL"][i][0]:
+                        return family[k][tag][0]
+    # return 'NA' to indicate parent not found
+    return 'NA'
