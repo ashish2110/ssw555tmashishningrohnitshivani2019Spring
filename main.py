@@ -365,6 +365,8 @@ class Gedcom():
         userstory_an.parse_data_38(self.ind)
         # User Story 29
         us29_list_dead(self.ind)
+        # User story 30
+        us30_list_living_married(self.ind, self.family)
 
     # Call your user story method here if it is related to search and validate
     def validate_all(self):

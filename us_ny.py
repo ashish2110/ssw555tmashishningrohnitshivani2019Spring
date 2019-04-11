@@ -199,3 +199,17 @@ def us26_match_entries(ind, family):
                 elif not any(key in sublist for sublist in ind[childID]["FAMC"]):
                 # entries found but not matching
                     print('Error US26 in line', family[key]["CHIL"][i][1], ': child ID', childID, 'in family', key, 'has wrong entry in individuals.')
+
+
+# Sprint 4 user stories
+def us30_list_living_married(ind, family):
+    print('\nUS30: List all living married individuals:')
+    for key, values in family.items():
+        if(values.__contains__("HUSB") and values.__contains__("WIFE")):
+            husID = family[key]["HUSB"][0]
+            wifeID = family[key]["WIFE"][0]
+
+            if(husID in ind.keys() and ind[husID]["ALIVE"] == "True"):
+                print('US30: Husband', ind[husID]["NAME"][0], '(', husID ,') from family', key, 'is married and alive.')
+            if(wifeID in ind.keys() and ind[wifeID]["ALIVE"] == "True"):
+                print('US30: Wife', ind[wifeID]["NAME"][0], '(', wifeID ,') from family', key, 'is married and alive.')
