@@ -10,7 +10,7 @@ class TestProject(unittest.TestCase):
         self.assertTrue(us01_tsk01_is_b4_now("1990-12-18"))
         self.assertTrue(us01_tsk01_is_b4_now("1980-02-13"))
         # if date is after current date, it is false
-        self.assertFalse(us01_tsk01_is_b4_now("2019-04-13"))
+        self.assertFalse(us01_tsk01_is_b4_now("2019-06-13"))
         self.assertFalse(us01_tsk01_is_b4_now("2022-03-11"))
 
 if __name__ == '__main__':
