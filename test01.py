@@ -1,4 +1,6 @@
 import unittest
+import timedelta
+import datetime
 from us_ny import us01_tsk01_is_b4_now
 
 class TestProject(unittest.TestCase):
@@ -10,8 +12,10 @@ class TestProject(unittest.TestCase):
         self.assertTrue(us01_tsk01_is_b4_now("1990-12-18"))
         self.assertTrue(us01_tsk01_is_b4_now("1980-02-13"))
         # if date is after current date, it is false
-        self.assertFalse(us01_tsk01_is_b4_now("2019-06-13"))
-        self.assertFalse(us01_tsk01_is_b4_now("2022-03-11"))
+        futureDate = datetime.datetime.now() + datetime.timedelta(days = 60)
+        self.assertFalse(us01_tsk01_is_b4_now(futureDate.strftime('%Y-%m-%d')))
+        futureDate = datetime.datetime.now() + datetime.timedelta(days = 365)
+        self.assertFalse(us01_tsk01_is_b4_now(futureDate.strftime('%Y-%m-%d')))
 
 if __name__ == '__main__':
     unittest.main()
