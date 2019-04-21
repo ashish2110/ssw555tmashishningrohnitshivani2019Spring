@@ -204,3 +204,23 @@ class userstories_sp():
             father_death_date = userstories_sp.date_conversion(father_death_date[0])
             mother_death_date = userstories_sp.date_conversion(mother_death_date[0])
             return child_birth_date < mother_death_date and abs((child_birth_date-father_death_date).days/30.43) < 9 or father_death_date > child_birth_date
+
+    
+    # User Story 17
+    """
+    Parents should not marry any of their children
+    """
+    def us17_parent_ntmarry_children(family):
+        for key, values in family.items():
+            if (values.__contains__("CHIL") and values.__contains__("HUSB") and values.__contains__("WIFE") and family[key]["CHIL"] != "NA" and family[key]["HUSB"] != "NA" and family[key]["WIFE"] != "NA"):
+                mother = family[key]["WIFE"][0]
+                father = family[key]["HUSB"][0]
+                for child in family[key]["CHIL"]:
+                    status = userstories_sp.us17_parent_ntmarry_children_check(mother,father,child[0])
+                    if (status == False):
+                        print("ERROR US17 in line "+str(family[key]["WIFE"][1])+" or "+str(family[key]["HUSB"][1])+" or "+str(child[1])+": Parents should not marry any of their children")
+            
+
+    def us17_parent_ntmarry_children_check(mother_id,father_id,child_id):
+        if (mother_id == child_id or father_id == child_id):
+            return False 
