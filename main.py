@@ -415,9 +415,9 @@ class Gedcom():
 def main():
     gedcom = Gedcom(FILENAME)
     gedcom.print_all()
-    gedcom.validate_all()
-    #print(gedcom.ind)
-    #print(gedcom.family_obj)
+    #gedcom.validate_all()
+    print(gedcom.ind)
+    print(gedcom.family_obj)
     
 
 if __name__ == '__main__':

@@ -164,17 +164,20 @@ class us_rs:
                 indAndAgeArray = sorted(indAndAgeArray, key=lambda x: x[1], reverse=True)       
                 print([i[0] for i in indAndAgeArray])
         
-        return 0 ;
+        return [i[0] for i in indAndAgeArray] ;
 
     # User Story 31 - List all living people over 30 who have never been married in a GEDCOM file
     def listSinglePeopleOver30(individual):
         listOfInd = []
+        flag = False
         for indId, indValue in individual.items():
-            print(str(indValue['FAMS'])+ " " +str(indValue['AGE']) + " " + indValue['ALIVE'])
-            if((indValue['FAMS'] == 'NA') and  (indValue['ALIVE'] == True)):
+            # print(str(indValue['FAMS'])+ " " +str(indValue['AGE']) + " " + indValue['ALIVE'])
+            if((indValue['FAMS'] == 'NA') and  (indValue['ALIVE'] == 'True') and indValue["AGE"] > 30):
                 listOfInd.append(indId)
+                flag = True
         print("US 31: List of all living people over 30 who have never been married: ")
         print(listOfInd)
+        return flag
         
                 
 
