@@ -6,6 +6,10 @@ class us_rs:
         nameArr = name.split(" ")
         return nameArr[0]
 
+    def ageOfInd(indId, ind_object):
+        
+        return ind_object[indId]["AGE"]
+
     # UserStory 15
     def siblingCount(family):
         validity = True
@@ -133,6 +137,45 @@ class us_rs:
 
         return flag
 
+
+    # User Story 28 - List siblings in families by decreasing age, i.e. oldest siblings first
+
+    def listChildrenDecreasingOrderOfAge(individual, family):
+        print("Listing siblings (if listed in the individual table) in a family in a decreasing order of their ages.")
+        
+        for famid, famvalue in family.items():
+            indAndAgeArray = []
+            if famvalue.__contains__("CHIL"):
+                
+                print("Family " + famid + ":")
+                for child in famvalue["CHIL"]:
+                    childAndAge =[]
+                    childAndAge.append(child[0])
+                    if child[0] in individual:
+                        childAndAge.append(us_rs.ageOfInd(child[0], individual))
+                        indAndAgeArray.append(childAndAge)
+                        
+                        childAndAge = []
+
+                for item in indAndAgeArray:
+                    if not isinstance(item[1], int):
+                        item[1] = 0
+                
+                indAndAgeArray = sorted(indAndAgeArray, key=lambda x: x[1], reverse=True)       
+                print([i[0] for i in indAndAgeArray])
+        
+        return 0 ;
+
+    # User Story 31 - List all living people over 30 who have never been married in a GEDCOM file
+    def listSinglePeopleOver30(individual):
+        listOfInd = []
+        for indId, indValue in individual.items():
+            print(str(indValue['FAMS'])+ " " +str(indValue['AGE']) + " " + indValue['ALIVE'])
+            if((indValue['FAMS'] == 'NA') and  (indValue['ALIVE'] == True)):
+                listOfInd.append(indId)
+        print("US 31: List of all living people over 30 who have never been married: ")
+        print(listOfInd)
+        
                 
 
   
