@@ -367,6 +367,10 @@ class Gedcom():
         us29_list_dead(self.ind)
         # User story 30
         us30_list_living_married(self.ind, self.family)
+        # User Story 28
+        us_rs.listChildrenDecreasingOrderOfAge(self.ind, self.family)
+        # User Story 31
+        us_rs.listSinglePeopleOver30(self.ind)
 
     # Call your user story method here if it is related to search and validate
     def validate_all(self):
@@ -406,18 +410,12 @@ class Gedcom():
         userstories_sp.us09_child_birth_parent_death(self.ind, self.family)
         # User Story 18
         us18_sibling_marriage(self.family)
-        # User Story 28
-        us_rs.listChildrenDecreasingOrderOfAge(self.ind, self.family)
-        # User Story 31
-        us_rs.listSinglePeopleOver30(self.ind)
-        
+
 
 def main():
     gedcom = Gedcom(FILENAME)
     gedcom.print_all()
-    #gedcom.validate_all()
-    print(gedcom.ind)
-    print(gedcom.family_obj)
+    gedcom.validate_all()
     
 
 if __name__ == '__main__':
