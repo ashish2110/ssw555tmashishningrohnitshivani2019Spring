@@ -57,10 +57,10 @@ class userstories_sp():
         #     # print(marriage_date+"----------------------------------------------")
         #     return True
         # else:
-           
-        birth_date = userstories_sp.date_conversion(birth_date)
-        marriage_date = userstories_sp.date_conversion(marriage_date)
-        return birth_date < marriage_date
+        if (userstories_sp.is_date_parsable(birth_date) and userstories_sp.is_date_parsable(marriage_date)):   
+            birth_date = userstories_sp.date_conversion(birth_date)
+            marriage_date = userstories_sp.date_conversion(marriage_date)
+            return birth_date < marriage_date
         # else:
         #     return True
             
