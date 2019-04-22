@@ -165,7 +165,7 @@ class us_rs:
                 indAndAgeArray = sorted(indAndAgeArray, key=lambda x: x[1], reverse=True)       
                 print([i[0] for i in indAndAgeArray])
         
-        return [i[0] for i in indAndAgeArray] ;
+        return [i[0] for i in indAndAgeArray]
 
     # User Story 31 - List all living people over 30 who have never been married in a GEDCOM file
     def listSinglePeopleOver30(individual):
