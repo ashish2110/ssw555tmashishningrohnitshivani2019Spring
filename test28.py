@@ -16,7 +16,7 @@ class testcase(unittest.TestCase):
     correctFam1 = {
     '@F1@': {'HUSB': ['@I1@', 139], 'WIFE': ['@I2@', 140], 'CHIL': [['@I3@', 131], ["@I4@", 141], ["@I5@", 152]], 'MARR_DATE': ['1995-03-02', 143], 'DIV_DATE': ['1972-03-28', 153]}
     }
-    def testUS06(self):
+    def testUS28(self):
         result = us_rs.listChildrenDecreasingOrderOfAge(self.correctIndi1, self.correctFam1)
         self.assertEqual(result, ["@I5@", "@I3@", "@I4@"]);
 

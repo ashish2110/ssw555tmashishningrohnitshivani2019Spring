@@ -20,7 +20,7 @@ class testcase(unittest.TestCase):
     "@I5@": {"FAMS": "NA", "AGE": 23, "ALIVE": "True"}
     }
     
-    def testUS06(self):
+    def testUS31(self):
         
         self.assertTrue(us_rs.listSinglePeopleOver30(self.correctIndi1))
         self.assertFalse(us_rs.listSinglePeopleOver30(self.incorrectIndi))
