@@ -124,7 +124,7 @@ class userstories_sp():
             if (values.__contains__("CHIL") and family[key]["CHIL"] != "NA"):
                 for child in family[key]["CHIL"]:
                     for key1, value1 in ind.items():
-                        if (value1.__contains__("BIRT_DATE") and ind[key1]["BIRT_DATE"][0] != "NA"):
+                        if (value1.__contains__("BIRT_DATE") and ind[key1]["BIRT_DATE"] != "NA"):
                             if key1 == child[0]:
                                 child_birth_date = ind[key1]["BIRT_DATE"][0]
                                 child_bd_lineno = ind[key1]["BIRT_DATE"][1]
