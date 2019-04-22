@@ -141,7 +141,35 @@ class userstory_an():
                 upcoming_birthdays.append(output)
         print("US38: List of id's of living people whose birthday occurs in next 30 days: "+str(upcoming_birthdays))
 
-    """def parse_data_39(family):
-        for family_id in family:"""
+
+    def us_39(alive_status):
+        if alive_status[0]!='NA':
+            if alive_status[0][0]!='Invalid':
+                if alive_status[1]=='True' and alive_status[2]=='True':
+                    date_today=alive_status[3]
+                    date_30_days_later=alive_status[3]+datetime.timedelta(days=30)
+                    x=alive_status[0][0]
+                    x=datetime.datetime.strptime(x,'%Y-%m-%d')
+                    if (date_today.day<=x.day and date_today.month==x.month) or (date_30_days_later.day>=x.day and date_30_days_later.month==x.month) or (date_today.month<x.month and date_30_days_later.month>x.month):
+                        return [alive_status[4],alive_status[5]]
+                    else:
+                        return 0
+                else:
+                    return 0
+            else:
+                return 0
+        else:
+            return 0
+
+    def parse_data_39(ind,family):
+        upcoming_anniversaries=[]
+        for family_id in family:
+            if ("HUSB" in family[family_id]) and ("WIFE" in family[family_id]):
+                if family[family_id]["HUSB"]!="NA" and family[family_id]["WIFE"]!="NA":
+                    if (family[family_id]["HUSB"][0] in ind) and (family[family_id]["WIFE"][0] in ind):
+                        output=userstory_an.us_39([family[family_id]["MARR_DATE"],ind[family[family_id]["HUSB"][0]]['ALIVE'],ind[family[family_id]["WIFE"][0]]['ALIVE'],datetime.datetime.now(),family[family_id]["HUSB"][0], family[family_id]["WIFE"][0]])
+                        if output!=0:
+                            upcoming_anniversaries.append(output)
+        print("US39: List of id's of living people whose anniversaries occurs in next 30 days: "+str(upcoming_anniversaries))
             
     

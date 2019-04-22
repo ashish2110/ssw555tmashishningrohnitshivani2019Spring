@@ -363,6 +363,8 @@ class Gedcom():
     # Call your user story method here if it is related to search and display
     def print_all(self):
         self.print_gedcom()
+        #User Story 39
+        userstory_an.parse_data_39(self.ind,self.family)
         #User Story 35
         userstories_sp.us35_ppl_born_last_30days(self.ind)
         #User Story 36

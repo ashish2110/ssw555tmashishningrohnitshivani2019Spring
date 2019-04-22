@@ -1,6 +1,5 @@
 import unittest
 import datetime
-import timedelta
 from userstories_sp import *
 
 class TestProject(unittest.TestCase):
