@@ -63,7 +63,7 @@ US30: Husband Edward /Bing/ ( @I10@ ) from family @F5@ is married and alive.
 US30: Wife Mine /Ruthers/ ( @I11@ ) from family @F5@ is married and alive.
 US30: Husband Jerry /Bing/ ( @I13@ ) from family @F6@ is married and alive.
 US30: Husband Edward /Bing/ ( @I10@ ) from family @F7@ is married and alive.
-Listing siblings (if listed in the individual table) in a family in a decreasing order of their ages.
+US 28: Listing siblings (if listed in the individual table) in a family in a decreasing order of their ages.
 Family @F1@:
 ['@I1@']
 Family @F2@:
