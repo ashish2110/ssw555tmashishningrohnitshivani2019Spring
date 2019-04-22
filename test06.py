@@ -16,7 +16,7 @@ class testcase(unittest.TestCase):
     def testUS06(self):
         self.assertTrue(us_rs.divorceBeforeDeath(self.correctIndi1, self.correctFam1))
 
-
+    
 
 if __name__ == "__main__":
     unittest.main()

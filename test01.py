@@ -15,6 +15,6 @@ class TestProject(unittest.TestCase):
         self.assertFalse(us01_tsk01_is_b4_now(futureDate.strftime('%Y-%m-%d')))
         futureDate = datetime.datetime.now() + datetime.timedelta(days = 365)
         self.assertFalse(us01_tsk01_is_b4_now(futureDate.strftime('%Y-%m-%d')))
-
+        
 if __name__ == '__main__':
     unittest.main()

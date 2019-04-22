@@ -35,7 +35,7 @@ class TestProject(unittest.TestCase):
         
         #if there is an error in the user story, it will print the error and return false
         self.assertFalse(userstories_sp.us02_birth_before_marriage(self.incorrect_ind,self.incorrect_family))
-
+    
 
 if __name__ == '__main__':
     unittest.main()
