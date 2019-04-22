@@ -135,6 +135,9 @@ class Gedcom():
         i=0
         while i<len(finalize):
             if finalize[i][0]=="0" and finalize[i][1]=="INDI":
+                #User story 22
+                if finalize[i][2] in self.ind :
+                    print("ERROR US22 for ID  "+finalize[i][2]+": All individual IDs should be unique and all family IDs should be unique")
                 self.ind[finalize[i][2]]={}
                 j=i+1
                 while not(finalize[j][0]=="0" and (finalize[j][1]=="INDI" or finalize[j][1]=="FAM")) :
@@ -200,6 +203,9 @@ class Gedcom():
                 
                 i=j
             elif finalize[i][0]=="0" and finalize[i][1]=="FAM":
+                #User story 22
+                if finalize[i][2] in self.family :
+                    print("ERROR US22 for ID  "+finalize[i][2]+": All individual IDs should be unique and all family IDs should be unique")
                 self.family[finalize[i][2]]={}
                 j=i+1
                 while not(finalize[j][0]=="0" and (finalize[j][1]=="INDI" or finalize[j][1]=="FAM")):

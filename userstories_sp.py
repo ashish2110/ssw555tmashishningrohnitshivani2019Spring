@@ -35,7 +35,8 @@ class userstories_sp():
                     for family_id_list in ind[key]["FAMS"]:
                         for family_id in family_id_list : 
                             for key1, values1 in family.items():
-                                if (key1 == family_id and values1.__contains__("MARR_DATE") and family[key1]["MARR_DATE"][0] != "NA"):
+                                # print(str(family[key1]["MARR_DATE"])+"------------------------")
+                                if (key1 == family_id and values1.__contains__("MARR_DATE") and family[key1]["MARR_DATE"] != "NA"):
                                     isvalid = userstories_sp.us02_birth_is_before_marriage(ind[key]["BIRT_DATE"][0],family[key1]["MARR_DATE"][0])
                                     if (isvalid == False):
                                         print('Error US02 in line',ind[key]["BIRT_DATE"][1],': Birth date of', ind[key]["NAME"][0], '(', key ,') occurs after the marriage date.')
@@ -50,9 +51,12 @@ class userstories_sp():
 
     #changes in code to shorten length
     def us02_birth_is_before_marriage(birth_date,marriage_date):
+        # print(marriage_date+"=================================================")
         if(birth_date == "NA" or marriage_date == "NA"):
+            # print(marriage_date+"----------------------------------------------")
             return True
         else:
+           
             birth_date = userstories_sp.date_conversion(birth_date)
             marriage_date = userstories_sp.date_conversion(marriage_date)
             return birth_date < marriage_date
@@ -65,7 +69,7 @@ class userstories_sp():
     def us35_ppl_born_last_30days(ind):
         last_30days_born_list =[]
         for key, values in ind.items():
-            if (values.__contains__("BIRT_DATE") and ind[key]["BIRT_DATE"][0] != "NA"):
+            if (values.__contains__("BIRT_DATE") and ind[key]["BIRT_DATE"] != "NA"):
                 status = userstories_sp.us35_ppl_born_last_30days_check(ind[key]["BIRT_DATE"][0])
                 if status == True:
                     last_30days_born_list.append(key+str(values))
@@ -92,7 +96,7 @@ class userstories_sp():
     def us36_ppl_died_last_30days(ind):
         last_30days_died_list =[]
         for key, values in ind.items():
-            if (values.__contains__("DEAT_DATE") and ind[key]["DEAT_DATE"][0] != "NA"):
+            if (values.__contains__("DEAT_DATE") and ind[key]["DEAT_DATE"] != "NA"):
                 status = userstories_sp.us36_ppl_died_last_30days_check(ind[key]["DEAT_DATE"][0])
                 if status == True:
                     last_30days_died_list.append(key+str(values))
@@ -156,7 +160,7 @@ class userstories_sp():
                 for child in family[key]["CHIL"]:
                     for key1, values1 in ind.items():
                         if (key1 == child[0]):
-                            if(values1.__contains__("BIRT_DATE") and ind[key1]["BIRT_DATE"][0] != "NA"):
+                            if(values1.__contains__("BIRT_DATE") and ind[key1]["BIRT_DATE"] != "NA"):
                                 status = userstories_sp.us08_child_parents_marriagedate_check(family[key]["MARR_DATE"][0],ind[key1]["BIRT_DATE"][0],family[key]["DIV_DATE"])
                                 if (status == False):
                                     print("ERROR US08 in line"+str(ind[key1]["BIRT_DATE"][1])+": Children should be born after marriage of parents (and not more than 9 months after their divorce")
