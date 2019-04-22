@@ -142,7 +142,7 @@ class us_rs:
     # User Story 28 - List siblings in families by decreasing age, i.e. oldest siblings first
 
     def listChildrenDecreasingOrderOfAge(individual, family):
-        print("Listing siblings (if listed in the individual table) in a family in a decreasing order of their ages.")
+        print("US 28: Listing siblings (if listed in the individual table) in a family in a decreasing order of their ages.")
         
         for famid, famvalue in family.items():
             indAndAgeArray = []
