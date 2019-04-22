@@ -389,8 +389,6 @@ class Gedcom():
         us_rs.listChildrenDecreasingOrderOfAge(self.ind, self.family)
         # User Story 31
         us_rs.listSinglePeopleOver30(self.ind)
-        # User Story 17
-        userstories_sp.us17_parent_ntmarry_children(self.family)
 
     # Call your user story method here if it is related to search and validate
     def validate_all(self):

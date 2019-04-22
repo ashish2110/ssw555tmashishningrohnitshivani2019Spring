@@ -1,4 +1,3 @@
-$ python main.py
 ERROR US22 for ID  @I15@: All individual IDs should be unique and all family IDs should be unique
 ERROR US22 for ID  @F8@: All individual IDs should be unique and all family IDs should be unique
 Individuals
@@ -79,7 +78,6 @@ Family @F7@:
 ['@I14@']
 US 31: List of all living people over 30 who have never been married:
 ['@I9@']
-ERROR US17 in line 236 or 235 or 237: Parents should not marry any of their children
 Error US01 in line 36 : Death date of Smith /Johnson/ ( @I2@ ) occurs after current date.
 Error US01 in line 136 : Birth date of Jerry /Bing/ ( @I12@ ) occurs after current date.
 Error US01 in line 227 : Divorce date of  Edward /Bing/ ( @I10@ ) and Mine /Ruthers/ ( @I11@ ) in Family ( @F5@ ) occurs after current date.
