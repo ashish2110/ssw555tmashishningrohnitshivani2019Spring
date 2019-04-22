@@ -80,7 +80,7 @@ class us_rs:
         error = []
         for famid, famvalue in family.items():
             marriageDate = famvalue['MARR_DATE']
-            if marriageDate == "NA":
+            if marriageDate == "NA" or (famvalue['HUSB'][0] not in individual.keys()) or (famvalue['WIFE'][0] not in individual.keys()):
                 flag = True
                 continue 
             husbandDeath = individual[famvalue['HUSB'][0]]['DEAT_DATE']
