@@ -245,5 +245,4 @@ class userstories_sp():
             
 
     def us17_parent_ntmarry_children_check(mother_id,father_id,child_id):
-        if (mother_id == child_id or father_id == child_id):
-            return False 
+        return not (mother_id == child_id or father_id == child_id) 

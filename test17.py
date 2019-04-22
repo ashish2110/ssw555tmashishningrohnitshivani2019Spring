@@ -6,11 +6,9 @@ class TestProject(unittest.TestCase):
     """
     Parents should not marry any of their children
     """
-    def us17_parent_ntmarry_children_check(self):
+    def test_us17_parent_ntmarry_children_check(self):
         # Assure that the dates are in properformat
         # template : us17_parent_ntmarry_children_check(mother_id,father_id,child_id)
-       
-
 
         # If birth date is after present date
         self.assertFalse(userstories_sp.us17_parent_ntmarry_children_check("@I1@","@I2@","@I1@"))
