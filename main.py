@@ -195,6 +195,9 @@ class Gedcom():
                 if not("FAMS" in self.ind[finalize[i][2]]):
                     self.ind[finalize[i][2]]["FAMS"]="NA"
 
+                if not("NAME" in self.ind[finalize[i][2]]):
+                    self.ind[finalize[i][2]]["NAME"]="NA"
+                
                 i=j
             elif finalize[i][0]=="0" and finalize[i][1]=="FAM":
                 self.family[finalize[i][2]]={}
