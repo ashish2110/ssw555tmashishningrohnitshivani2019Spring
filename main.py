@@ -330,7 +330,10 @@ class Gedcom():
             if values.__contains__("HUSB"):
                 arr.append (self.family[key]["HUSB"][0])
                 husID = self.family[key]["HUSB"][0]
-                arr.append(self.ind[husID]["NAME"][0])
+                if(husID in self.ind.keys()):
+                    arr.append(self.ind[husID]["NAME"][0])
+                else:
+                    arr.append("NA")
             else:
                 arr.append("NA")
                 arr.append("NA")
@@ -338,7 +341,10 @@ class Gedcom():
             if values.__contains__("WIFE"):
                 arr.append (self.family[key]["WIFE"][0])
                 wifeID = self.family[key]["WIFE"][0]
-                arr.append(self.ind[wifeID]["NAME"][0])
+                if(wifeID in self.ind.keys()):
+                    arr.append(self.ind[wifeID]["NAME"][0])
+                else:
+                    arr.append("NA")
             else:
                 arr.append("NA")
                 arr.append("NA")
@@ -422,6 +428,8 @@ class Gedcom():
         userstories_sp.us09_child_birth_parent_death(self.ind, self.family)
         # User Story 18
         us18_sibling_marriage(self.family)
+        # User Story 17
+        userstories_sp.us17_parent_ntmarry_children(self.family)
 
 
 def main():

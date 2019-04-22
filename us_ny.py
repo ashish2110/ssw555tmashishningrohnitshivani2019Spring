@@ -75,8 +75,12 @@ def us10_marriage_after_14(ind, family):
         if (values.__contains__("MARR_DATE") and family[key]["MARR_DATE"] != "NA"):
             husID = family[key]["HUSB"][0]
             wifeID = family[key]["WIFE"][0]
-            # argument sequence: date of marriage, husband date of birth, wife date of birth
-            isChildMarriage = us10_tsk01_is_child_marriage(family[key]["MARR_DATE"][0], ind[husID]["BIRT_DATE"][0], ind[wifeID]["BIRT_DATE"][0])
+            if(husID not in ind.keys()) or (wifeID not in ind.keys()):
+                # If spouse not found, it is skipped.
+                isChildMarriage = False
+            else:
+                # argument sequence: date of marriage, husband date of birth, wife date of birth
+                isChildMarriage = us10_tsk01_is_child_marriage(family[key]["MARR_DATE"][0], ind[husID]["BIRT_DATE"][0], ind[wifeID]["BIRT_DATE"][0])
             if(isChildMarriage):
                 print('Anomaly US10 in line', family[key]["MARR_DATE"][1],': Marriage of ', ind[husID]["NAME"][0],'(', husID, ') and', ind[wifeID]["NAME"][0],'(', wifeID,') in Family (', key,') occurs before both parents are 14 years old.')
 # dom: date of marriage, DOB: date of birth
@@ -108,8 +112,12 @@ def us34_list_big_age_diff(ind, family):
         if (values.__contains__("MARR_DATE") and family[key]["MARR_DATE"] != "NA"):
             husID = family[key]["HUSB"][0]
             wifeID = family[key]["WIFE"][0]
-            # argument sequence: date of marriage, husband date of birth, wife date of birth
-            isBigGap = us34_tsk01_is_big_age_gap(family[key]["MARR_DATE"][0], ind[husID]["BIRT_DATE"][0], ind[wifeID]["BIRT_DATE"][0])
+            if(husID not in ind.keys()) or (wifeID not in ind.keys()):
+                # If spouse not found, it is skipped.
+                isBigGap = False
+            else:
+                # argument sequence: date of marriage, husband date of birth, wife date of birth
+                isBigGap = us34_tsk01_is_big_age_gap(family[key]["MARR_DATE"][0], ind[husID]["BIRT_DATE"][0], ind[wifeID]["BIRT_DATE"][0])
             if(isBigGap):
                 print('Family', key, 'of husband', ind[husID]["NAME"][0],'(', husID, ') and wife', ind[wifeID]["NAME"][0],'(', wifeID,')')
 
