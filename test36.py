@@ -1,5 +1,6 @@
 import unittest
 import datetime
+import timedelta
 from userstories_sp import *
 
 class TestProject(unittest.TestCase):
@@ -20,7 +21,8 @@ class TestProject(unittest.TestCase):
         self.assertFalse(userstories_sp.us36_ppl_died_last_30days_check("2018-04-13"))
 
         # If the birth date is within 30 days from current date, it should be true
-        self.assertTrue(userstories_sp.us36_ppl_died_last_30days_check("2019-03-21"))
+        pastDate = datetime.datetime.now() - datetime.timedelta(days = 28)
+        self.assertTrue(userstories_sp.us36_ppl_died_last_30days_check(pastDate.strftime('%Y-%m-%d')))
 
        
 
