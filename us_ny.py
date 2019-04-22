@@ -154,8 +154,8 @@ def us26_match_entries(ind, family):
                 # entries not found
                 if(familyID not in family.keys()):
                     print('Error US26 in line', ind[key]["FAMC"][index][1], ': Family', familyID, 'in Individual ID', key, 'does not have entry in families.')
-                elif not any(key in sublist for sublist in family[familyID]["CHIL"]):
-                # entries found but not matching
+                elif("CHIL" not in family[familyID].keys()) or (not any(key in sublist for sublist in family[familyID]["CHIL"])):
+                    # entries found but not matching
                     print('Error US26 in line', ind[key]["FAMC"][index][1], ': Family', familyID, 'and Individual ID', key, 'entries are inconsistent.')
         # check if individuals have matching spouse entries
         if(values.__contains__("FAMS") and ind[key]["FAMS"] != "NA"):
@@ -165,10 +165,11 @@ def us26_match_entries(ind, family):
                 # entries not found
                 if(spouseID not in family.keys()):
                     print('Error US26 in line', ind[key]["FAMS"][index][1], ': Family', spouseID, 'in Individual ID', key, 'does not have entry in families.')
-                elif(key not in family[spouseID]["HUSB"]) and (key not in family[spouseID]["WIFE"]):
-                # entries found but not matching
-                    print('Error US26 in line', ind[key]["FAMS"][index][1], ': Family', spouseID, 'and Individual ID', key, 'entries are inconsistent.')
-    
+                elif("HUSB" not in family[spouseID].keys()) or (key not in family[spouseID]["HUSB"]):
+                    # entries found but not matching
+                    if("WIFE" not in family[spouseID].keys()) or (key not in family[spouseID]["WIFE"]):
+                        print('Error US26 in line', ind[key]["FAMS"][index][1], ': Family', spouseID, 'and Individual ID', key, 'entries are inconsistent.')
+                
     # check if family have matching entries in individuals
     for key, values in family.items():
         # check if husbands have matching entries in individuals

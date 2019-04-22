@@ -197,9 +197,9 @@ class Gedcom():
 
                 if not("FAMS" in self.ind[finalize[i][2]]):
                     self.ind[finalize[i][2]]["FAMS"]="NA"
-
+                # if NAME is not specified, line of ID is included for reference instead
                 if not("NAME" in self.ind[finalize[i][2]]):
-                    self.ind[finalize[i][2]]["NAME"]="NA"
+                    self.ind[finalize[i][2]]["NAME"]=["NA", finalize[i][3]]
                 
                 i=j
             elif finalize[i][0]=="0" and finalize[i][1]=="FAM":
@@ -265,7 +265,7 @@ class Gedcom():
             arr = list()
             
             arr.append(key)
-            if values.__contains__("NAME") and self.ind[key]["NAME"] != "NA":
+            if values.__contains__("NAME"):
                 arr.append (self.ind[key]["NAME"][0])
             else:
                 arr.append("NA")
