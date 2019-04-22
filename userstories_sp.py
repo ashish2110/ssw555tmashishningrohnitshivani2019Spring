@@ -3,8 +3,16 @@
 import datetime
 # from dateutil import relativedelta
 
+
 class userstories_sp():
 
+    def is_date_parsable(dateString):
+        try:
+            datetime.datetime.strptime(dateString, '%Y-%m-%d')
+            return True
+        except ValueError:
+            return False
+    
     #refactored for date conversion to reduce duplicate code as it would be used even in future user stories
     def date_conversion(date):
         return datetime.datetime.strptime(date, '%Y-%m-%d')
@@ -126,9 +134,7 @@ class userstories_sp():
                         print("ERROR US12 in line :"+str(child_bd_lineno)+" or "+str(mother_bd_lineno)+" or "+str(father_bd_lineno)+": Mother should be less than 60 years older than her children and father should be less than 80 years older than his children")
            
     def us12_parent_child_agediff_limit_check(child_birth_date, mother_birth_date, father_birth_date):
-        if(child_birth_date == "NA" or mother_birth_date =="NA" or father_birth_date =="NA"):
-            return False
-        else:
+        if(userstories_sp.is_date_parsable(child_birth_date) and userstories_sp.is_date_parsable(mother_birth_date) and userstories_sp.is_date_parsable(father_birth_date)):
             child_birth_date = userstories_sp.date_conversion(child_birth_date)
             mother_birth_date = userstories_sp.date_conversion(mother_birth_date)
             father_birth_date = userstories_sp.date_conversion(father_birth_date)
@@ -136,6 +142,8 @@ class userstories_sp():
                 return True 
             else:
                 return False
+        else:
+            return False
 
 
     # User Story #08
@@ -154,6 +162,8 @@ class userstories_sp():
                                     print("ERROR US08 in line"+str(ind[key1]["BIRT_DATE"][1])+": Children should be born after marriage of parents (and not more than 9 months after their divorce")
 
     def us08_child_parents_marriagedate_check(marriage_date,child_birth_date,divorce_date):
+        if not(userstories_sp.is_date_parsable(child_birth_date)):
+            return True
         child_birth_date = userstories_sp.date_conversion(child_birth_date)
         marriage_date = userstories_sp.date_conversion(marriage_date)
         if (divorce_date == "NA"):
@@ -190,6 +200,8 @@ class userstories_sp():
             
 
     def us09_child_birth_parent_death_check(mother_death_date,father_death_date,child_birth_date):
+        if not(userstories_sp.is_date_parsable(child_birth_date[0])):
+            return True
         child_birth_date = userstories_sp.date_conversion(child_birth_date[0])
         if ((mother_death_date == "NA" or mother_death_date == "Invalid") and father_death_date != "NA"):
             # print("debug 1")
