@@ -53,14 +53,14 @@ class userstories_sp():
     def us02_birth_is_before_marriage(birth_date,marriage_date):
 
         # print(marriage_date+"=================================================")
-        # if(birth_date == "NA" or marriage_date == "NA"):
-        #     # print(marriage_date+"----------------------------------------------")
-        #     return True
-        # else:
-        if (userstories_sp.is_date_parsable(birth_date) and userstories_sp.is_date_parsable(marriage_date)):   
-            birth_date = userstories_sp.date_conversion(birth_date)
-            marriage_date = userstories_sp.date_conversion(marriage_date)
-            return birth_date < marriage_date
+        if(birth_date == "NA" or marriage_date == "NA"):
+            # print(marriage_date+"----------------------------------------------")
+            return True
+        else:
+            if (userstories_sp.is_date_parsable(birth_date) and userstories_sp.is_date_parsable(marriage_date)):   
+                birth_date = userstories_sp.date_conversion(birth_date)
+                marriage_date = userstories_sp.date_conversion(marriage_date)
+                return birth_date < marriage_date
         # else:
         #     return True
             
