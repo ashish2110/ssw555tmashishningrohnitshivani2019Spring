@@ -1,0 +1,133 @@
+$ python main.py
+ERROR US22 for ID  @I15@: All individual IDs should be unique and all family IDs should be unique
+ERROR US22 for ID  @F8@: All individual IDs should be unique and all family IDs should be unique
+Individuals
++-------+-------------------+--------+------------+---------+-------+------------+----------+------------------+
+|   ID  |        Name       | Gender |  Birthday  |   Age   | Alive |   Death    |  Child   |      Spouse      |
++-------+-------------------+--------+------------+---------+-------+------------+----------+------------------+
+|  @I1@ | Sherley /Johnson/ |   M    | 2019-04-20 | Invalid | False |  Invalid   | ['@F1@'] |        NA        |
+|  @I2@ |  Smith /Johnson/  |   F    | 1976-05-10 |   174   | False | 2150-06-10 | ['@F2@'] |     ['@F1@']     |
+|  @I3@ |  Christine /Clie/ |   F    | 1800-05-04 |   218   |  True |     NA     | ['@F3@'] |     ['@F1@']     |
+|  @I4@ |   Mathew /Clie/   |   M    | 1980-04-08 |    39   |  True |     NA     |   None   |     ['@F3@']     |
+|  @I5@ |   Mary /Nichole/  |   M    | 1958-03-13 |    61   |  True |     NA     |   None   |     ['@F3@']     |
+|  @I6@ |  David /Johnson/  |   M    | 1950-04-07 |    20   | False | 1970-12-20 |   None   |     ['@F2@']     |
+|  @I7@ |  David /Johnson/  |   F    | 1950-04-07 |    45   | False | 1995-05-10 |   None   | ['@F2@', '@F4@'] |
+|  @I8@ |  Benjamin /Bing/  |   M    | 1949-10-12 |    69   | False | 2019-04-15 |   None   |     ['@F4@']     |
+|  @I9@ |     Emy /Bing/    |   F    | 1980-05-11 |    38   |  True |     NA     | ['@F4@'] |        NA        |
+| @I10@ |   Edward /Bing/   |   M    | 2002-07-02 |    16   |  True |     NA     | ['@F4@'] |     ['@F5@']     |
+| @I11@ |   Mine /Ruthers/  |   F    | 2002-04-09 |    17   |  True |     NA     |   None   |     ['@F5@']     |
+| @I12@ |    Jerry /Bing/   |   M    | 2020-04-13 |    0    |  True |     NA     | ['@F5@'] |        NA        |
+| @I13@ |    Jerry /Bing/   |   M    | 2003-04-09 |    16   |  True |     NA     | ['@F5@'] |     ['@F6@']     |
+| @I14@ |     Nan /Sun/     |   F    | 2004-05-08 |    -1   | False | 2003-03-15 | ['@F5@'] |     ['@F6@']     |
+| @I15@ |         NA        |   NA   |     NA     |    NA   | False |     NA     |   None   |        NA        |
++-------+-------------------+--------+------------+---------+-------+------------+----------+------------------+
+Family
++------+------------+------------+------------+-----------------+---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  ID  |  Married   |  Divorced  | Husband ID |   Husband Name  | Wife ID |    Wife Name     |                                                                                      Children                                                                                       |
++------+------------+------------+------------+-----------------+---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| @F1@ | 1995-03-02 |     NA     |    @I2@    | Smith /Johnson/ |   @I3@  | Christine /Clie/ |                                                                                      ['@I1@']                                                                                       |
+| @F2@ | 1974-06-28 | 1972-03-28 |    @I6@    | David /Johnson/ |   @I7@  | David /Johnson/  |                                                                                      ['@I2@']                                                                                       |
+| @F4@ | 1966-03-09 | 1996-03-10 |    @I8@    | Benjamin /Bing/ |   @I7@  | David /Johnson/  |                                                                                 ['@I9@', '@I10@']                                                                                   |
+| @F3@ | 1976-05-07 |     NA     |    @I4@    |  Mathew /Clie/  |   @I5@  |  Mary /Nichole/  |                                                                                      ['@I3@']                                                                                       |
+| @F5@ | 2019-04-11 | 2020-06-18 |   @I10@    |  Edward /Bing/  |  @I11@  |  Mine /Ruthers/  | ['@I12@', '@I13@', '@I14@', '@I15@', '@I16@', '@I17@', '@I18@', '@I19@', '@I20@', '@I21@', '@I22@', '@I23@', '@I24@', '@I25@', '@I26@', '@I27@', '@I28@', '@I29@', '@I30@', '@I31@'] |
+| @F6@ | 2011-06-02 |     NA     |   @I13@    |   Jerry /Bing/  |  @I14@  |    Nan /Sun/     |                                                                                         NA                                                                                          |
+| @F7@ | 2001-06-02 |     NA     |   @I10@    |  Edward /Bing/  |  @I14@  |    Nan /Sun/     |                                                                                     ['@I14@']                                                                                       |
+| @F8@ |     NA     |     NA     |     NA     |        NA       |    NA   |        NA        |                                                                                         NA                                                                                          |
++------+------------+------------+------------+-----------------+---------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+US39: List of id's of living people whose anniversaries occurs in next 30 days: [['@I4@', '@I5@']]
+US35: List of individuals born in the last 30days:
+@I1@{'NAME': ['Sherley /Johnson/', 17], 'SEX': ['M', 21], 'BIRT_DATE': ['2019-04-20', 23], 'DEAT_DATE': ['Invalid', 25], 'FAMC': [['@F1@', 26]], 'ALIVE': 'False', 'AGE': 'Invalid', 'FAMS': 'NA'}
+
+US36: List of individuals died in the last 30days:
+@I8@{'NAME': ['Benjamin /Bing/', 91], 'SEX': ['M', 95], 'BIRT_DATE': ['1949-10-12', 97], 'DEAT_DATE': ['2019-04-15', 99], 'FAMS': [['@F4@', 100]], 'ALIVE': 'False', 'AGE':69, 'FAMC': 'None'}
+
+US33: List of id's of orpan children is: ['@I10@']
+
+US34: List of couples whose marriage occurs when older spouse is more than twice as old as younger one.
+Family @F1@ of husband Smith /Johnson/ ( @I2@ ) and wife Christine /Clie/ ( @I3@ )
+US38: List of id's of living people whose birthday occurs in next 30 days: ['@I3@', '@I9@']
+
+US29: List all deceased individuals:
+US29: Individual Sherley /Johnson/ ( @I1@ ) died at Invalid
+US29: Individual Smith /Johnson/ ( @I2@ ) died at 2150-06-10
+US29: Individual David /Johnson/ ( @I6@ ) died at 1970-12-20
+US29: Individual David /Johnson/ ( @I7@ ) died at 1995-05-10
+US29: Individual Benjamin /Bing/ ( @I8@ ) died at 2019-04-15
+US29: Individual Nan /Sun/ ( @I14@ ) died at 2003-03-15
+US29: Individual NA ( @I15@ ) died at N
+
+US30: List all living married individuals:
+US30: Wife Christine /Clie/ ( @I3@ ) from family @F1@ is married and alive.
+US30: Husband Mathew /Clie/ ( @I4@ ) from family @F3@ is married and alive.
+US30: Wife Mary /Nichole/ ( @I5@ ) from family @F3@ is married and alive.
+US30: Husband Edward /Bing/ ( @I10@ ) from family @F5@ is married and alive.
+US30: Wife Mine /Ruthers/ ( @I11@ ) from family @F5@ is married and alive.
+US30: Husband Jerry /Bing/ ( @I13@ ) from family @F6@ is married and alive.
+US30: Husband Edward /Bing/ ( @I10@ ) from family @F7@ is married and alive.
+Listing siblings (if listed in the individual table) in a family in a decreasing order of their ages.
+Family @F1@:
+['@I1@']
+Family @F2@:
+['@I2@']
+Family @F4@:
+['@I9@', '@I10@']
+Family @F3@:
+['@I3@']
+Family @F5@:
+['@I13@', '@I12@', '@I15@', '@I14@']
+Family @F7@:
+['@I14@']
+US 31: List of all living people over 30 who have never been married:
+['@I9@']
+ERROR US17 in line 236 or 235 or 237: Parents should not marry any of their children
+Error US01 in line 36 : Death date of Smith /Johnson/ ( @I2@ ) occurs after current date.
+Error US01 in line 136 : Birth date of Jerry /Bing/ ( @I12@ ) occurs after current date.
+Error US01 in line 227 : Divorce date of  Edward /Bing/ ( @I10@ ) and Mine /Ruthers/ ( @I11@ ) in Family ( @F5@ ) occurs after current date.
+Error US03 in line 149 or line 151: Birth date is after death date for person with id@I14@
+Error US04 in line 176 or line 174:Marriage date occurs after Divorce date in @F2@ family
+Error US07 in line 34 or line 36:Age of person is 150 years with @I2@ id
+Error US07 in line 46:Age of person is 150 years with @I3@ id
+Error US21 in line 32:Gender of husband with @I2@ id is not male in @F1@ family
+Error US21 in line 63:Gender of wife with @I5@ id is not female in @F3@ family
+Error US42 in line 25 : Death date of ['Sherley /Johnson/', 17] ( @I1@ ) is illegitimate.
+ERROR US 15 in line 203. There are more than 15 siblings for family.
+Error US02 in line 56 : Birth date of Mathew /Clie/ ( @I4@ ) occurs after the marriage date.
+Anomaly US10 in line 233 : Marriage of  Jerry /Bing/ ( @I13@ ) and Nan /Sun/ ( @I14@ ) in Family ( @F6@ ) occurs before both parents are 14 years old.
+ERROR US 06 in line 76. Check the provided death date at the line. It occurs before the divorce.
+ERROR US 06 in line 87. Check the provided death date at the line. It occurs before the divorce.
+ERROR US 23 in line 68. The name and birthdate is not unique.
+ERROR US12 in line :23 or 46 or 34: Mother should be less than 60 years older than her children and father should be less than 80 years older than his children
+ERROR US12 in line :46 or 65 or 56: Mother should be less than 60 years older than her children and father should be less than 80 years older than his children
+ERROR US08 in line34: Children should be born after marriage of parents (and not more than 9 months after their divorce
+ERROR US08 in line108: Children should be born after marriage of parents (and not more than 9 months after their divorce
+ERROR US08 in line117: Children should be born after marriage of parents (and not more than 9 months after their divorce
+ERROR US08 in line46: Children should be born after marriage of parents (and not more than 9 months after their divorce
+ERROR US08 in line142: Children should be born after marriage of parents (and not more than 9 months after their divorce
+ERROR US08 in line149: Children should be born after marriage of parents (and not more than 9 months after their divorce
+Error US26 in line 206 : child ID @I15@ in family @F5@ has wrong entry in individuals.
+Error US26 in line 207 : child ID @I16@ in family @F5@ does not have entry in individuals.
+Error US26 in line 208 : child ID @I17@ in family @F5@ does not have entry in individuals.
+Error US26 in line 209 : child ID @I18@ in family @F5@ does not have entry in individuals.
+Error US26 in line 210 : child ID @I19@ in family @F5@ does not have entry in individuals.
+Error US26 in line 211 : child ID @I20@ in family @F5@ does not have entry in individuals.
+Error US26 in line 212 : child ID @I21@ in family @F5@ does not have entry in individuals.
+Error US26 in line 213 : child ID @I22@ in family @F5@ does not have entry in individuals.
+Error US26 in line 214 : child ID @I23@ in family @F5@ does not have entry in individuals.
+Error US26 in line 215 : child ID @I24@ in family @F5@ does not have entry in individuals.
+Error US26 in line 216 : child ID @I25@ in family @F5@ does not have entry in individuals.
+Error US26 in line 217 : child ID @I26@ in family @F5@ does not have entry in individuals.
+Error US26 in line 218 : child ID @I27@ in family @F5@ does not have entry in individuals.
+Error US26 in line 219 : child ID @I28@ in family @F5@ does not have entry in individuals.
+Error US26 in line 220 : child ID @I29@ in family @F5@ does not have entry in individuals.
+Error US26 in line 221 : child ID @I30@ in family @F5@ does not have entry in individuals.
+Error US26 in line 222 : child ID @I31@ in family @F5@ does not have entry in individuals.
+Error US26 in line 235 : husband ID @I10@ in family @F7@ has wrong entry in individuals.
+Error US26 in line 236 : wife ID @I14@ in family @F7@ has wrong entry in individuals.
+Error US26 in line 237 : child ID @I14@ in family @F7@ has wrong entry in individuals.
+ERROR US 25 in line 130. The Family has multiple children with the same first name.
+ERROR US 05 in line 76. Check the provided death date at the line. It occurs before the marriage.
+ERROR US 05 in line 151. Check the provided death date at the line. It occurs before the marriage.
+ERROR US09 in line34: Child should be born before death of mother and before 9 months after death of father
+ERROR US09 in line149: Child should be born before death of mother and before 9 months after death of father
+Anomaly US18 in line 230 or 231 : husband ID @I13@ and wife ID @I14@ are siblings but married.
+ERROR US17 in line 236 or 235 or 237: Parents should not marry any of their children
