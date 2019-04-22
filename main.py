@@ -175,6 +175,7 @@ class Gedcom():
                 if not("BIRT_DATE" in self.ind[finalize[i][2]]):
                     self.ind[finalize[i][2]]["BIRT_DATE"]="NA"
                     self.ind[finalize[i][2]]["AGE"]="NA"
+                    self.ind[finalize[i][2]]["ALIVE"]="False" #changed
                 else:
                     isLegitDate = us42_tsk01_is_legit_date(self.ind[finalize[i][2]]["BIRT_DATE"][0])
                     if(isLegitDate == True):

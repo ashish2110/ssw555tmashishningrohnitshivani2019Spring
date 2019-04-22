@@ -58,6 +58,22 @@ class userstory_an():
         else:
             return 0
 
+    def us_38(dates):
+        if dates[2]!='Invalid' and dates[2]!='NA' and dates[2]>0:
+            if dates[1]=='NA':
+                date_today=dates[4]
+                date_30_days_later=dates[4]+datetime.timedelta(days=30)
+                x=dates[0][0]
+                x=datetime.datetime.strptime(x,'%Y-%m-%d')
+                if (date_today.day<=x.day and date_today.month==x.month) or (date_30_days_later.day>=x.day and date_30_days_later.month==x.month) or (date_today.month<x.month and date_30_days_later.month>x.month):
+                    return dates[3]
+                else:
+                    return 0
+            else:
+                return 0
+        else:
+            return 0
+
     def parse_data_04(family):
         for family_id in family:
             input_list=[family[family_id]['MARR_DATE'],family[family_id]['DIV_DATE'],family_id]
@@ -117,24 +133,6 @@ class userstory_an():
             if output!=0:
                 print(output)
 
-    def us_38(dates):
-        if dates[2]!='Invalid' and dates[2]!='NA' and dates[2]>0:
-            if dates[1]=='NA':
-                date_today=dates[4]
-                date_30_days_later=dates[4]+datetime.timedelta(days=30)
-                x=dates[0][0]
-                x=datetime.datetime.strptime(x,'%Y-%m-%d')
-                if (date_today.day<=x.day and date_today.month==x.month) or (date_30_days_later.day>=x.day and date_30_days_later.month==x.month) or (date_today.month<x.month and date_30_days_later.month>x.month):
-                    return dates[3]
-                else:
-                    return 0
-            else:
-                return 0
-        else:
-            return 0
-
-
-
     def parse_data_38(ind):
         upcoming_birthdays=[]
         for individual_id in ind:
@@ -142,4 +140,8 @@ class userstory_an():
             if output!=0:
                 upcoming_birthdays.append(output)
         print("US38: List of id's of living people whose birthday occurs in next 30 days: "+str(upcoming_birthdays))
+
+    """def parse_data_39(family):
+        for family_id in family:"""
+            
     

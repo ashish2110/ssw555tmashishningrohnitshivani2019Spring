@@ -24,6 +24,7 @@
 1 DEAT
 2 DATE 4 MAY
 1 FAMC @F1@
+0 @I1@ INDI
 0 @I2@ INDI
 1 NAME Smith /Johnson/
 2 GIVN Smith
