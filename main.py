@@ -265,7 +265,7 @@ class Gedcom():
             arr = list()
             
             arr.append(key)
-            if values.__contains__("NAME"):
+            if values.__contains__("NAME") and self.ind[key]["NAME"] != "NA":
                 arr.append (self.ind[key]["NAME"][0])
             else:
                 arr.append("NA")
