@@ -13,8 +13,10 @@ FILENAME="My-Family-27-Jan-2019-275.ged"
 class Gedcom():
     
     def __init__(self, filename):
-        ged=open(filename,'r')
-        a=ged.read()
+        #ged=open(filename,'r')
+        # Refactor open file method to avoid 'ResourceWarning: unclosed file' in test
+        with open(filename,'r') as ged:
+            a=ged.read()
         b=a.split("\n")
         #print(b)
         self.tagCheck = []
